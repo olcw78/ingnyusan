@@ -1,7 +1,7 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'url';
-import express from 'express';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "url";
+import express from "express";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
