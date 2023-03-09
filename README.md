@@ -1,6 +1,6 @@
-# YSL 개인 블로그!
+# Ingnyusan Blog 
 
-# react + vite + ssg
-# daisyUI + tailwindcss
-
-# Ref: https://ogzhanolguncu.com/blog/react-ssr-ssg-from-scratch
+## Written In ...
+> ️react<br/>
+> daisyUI
+> tailwindcss
