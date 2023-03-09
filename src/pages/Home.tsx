@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <>
-      <h1>Home</h1>
+      <h1>Home 블로그 공사중!!!</h1>
       <br />
       <div>Button clicked {counter} times</div>
       <button onClick={() => setCounter(p => p + 1)}>Click me!</button>
