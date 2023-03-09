@@ -3,7 +3,7 @@ name: ysl
 
 on:
   push:
-    branches: [ master ]
+    branches: [ deploy ]
 
 jobs:
   continuous-deployment:
