@@ -2,5 +2,5 @@
 
 ## Written In ...
 > ️react<br/>
-> daisyUI
+> daisyUI<br/>
 > tailwindcss
