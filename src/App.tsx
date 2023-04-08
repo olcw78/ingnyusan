@@ -1,14 +1,18 @@
-import "./index.css";
+import Layout from "@/components/layout/Layout";
+import { RoutesManager } from "@/routes/RoutesManager";
 import { Route, Routes } from "react-router-dom";
+import { routesConfig } from "../routes.config";
+import "./index.css";
 import { routes } from "./routes";
-import Layout from "@/components/Layout/Layout";
+
+const routesManager = new RoutesManager(routes, routesConfig);
 
 const App = () => (
   <Routes>
     {routes.map(route => {
       const { path, component: RouteComponent } = route;
       const Element = () => (
-        <Layout>
+        <Layout routesManager={routesManager}>
           <RouteComponent />
         </Layout>
       );
