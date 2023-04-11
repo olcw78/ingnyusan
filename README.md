@@ -1,6 +1,6 @@
 # Ingnyusan Blog 
 
 ## Written In ...
-> ️react<br/>
+> ️react + SSR / SSG<br/>
 > daisyUI<br/>
 > tailwindcss
