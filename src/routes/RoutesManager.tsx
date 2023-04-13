@@ -25,7 +25,7 @@ export class RoutesManager {
   public reorderOverride(overrider: { name: string; order: number }[]) {}
 
   public exclude(config: RoutesConfigT) {
-    for (let ex of config.exclude) {
+    for (const ex of config.exclude) {
       this._routes = this._routes.filter(x => x.name !== ex);
     }
   }

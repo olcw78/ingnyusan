@@ -7,27 +7,30 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 export async function createServer() {
-  const resolve = (p) => path.resolve(__dirname, p);
+  const resolve = p => path.resolve(__dirname, p);
 
   let vite = null;
 
-  app.use((await import('compression')).default());
+  app.use((await import("compression")).default());
   app.use(
-    (await import('serve-static')).default(resolve('dist/client'), {
-      index: false,
-    }),
+    (await import("serve-static")).default(resolve("dist/client"), {
+      index: false
+    })
   );
 
-  app.use('*', async (req, res) => {
-    const url = '/';
+  app.use("*", async (req, res) => {
+    const url = "/";
 
-    const template = fs.readFileSync(resolve('dist/client/index.html'), 'utf-8');
-    const serverEntry = (await import('./dist/server/server.entry.js'));
+    const template = fs.readFileSync(
+      resolve("dist/client/index.html"),
+      "utf-8"
+    );
+    const serverEntry = await import("./dist/server/server.entry.js");
 
     const appHtml = serverEntry.default(url); //Rendering component without any client side logic de-hydrated like a dry sponge
     const html = template.replace(`<!--app-html-->`, appHtml); //Replacing placeholder with SSR rendered components
 
-    res.status(200).set({ 'Content-Type': 'text/html' }).end(html); //Outputing final html
+    res.status(200).set({ "Content-Type": "text/html" }).end(html); //Outputing final html
   });
 
   return { app, vite };
@@ -35,6 +38,6 @@ export async function createServer() {
 
 createServer().then(({ app }) =>
   app.listen(3033, () => {
-    console.log('http://localhost:3033');
-  }),
+    console.log("http://localhost:3033");
+  })
 );

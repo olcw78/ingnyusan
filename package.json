@@ -16,6 +16,7 @@
     "@nanostores/i18n": "^0.8.0",
     "@nanostores/persistent": "^0.7.0",
     "@nanostores/query": "^0.0.5",
+    "@react-pdf/renderer": "^3.1.9",
     "daisyui": "^2.51.3",
     "nanostores": "^0.7.4",
     "react": "^18.2.0",

@@ -1,4 +1,4 @@
-import { RoutesConfigT } from "@/routes/RoutesConfig";
+import type { RoutesConfigT } from "@/routes/RoutesConfig";
 
 export const routesConfig = {
   exclude: ["Home"]
