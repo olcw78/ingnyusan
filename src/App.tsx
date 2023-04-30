@@ -1,12 +1,8 @@
 import Layout from "@/components/layout/Layout";
-import { RoutesManager } from "@/routes/RoutesManager";
 import { useMounted } from "@/util/useMounted";
 import { Route, Routes } from "react-router-dom";
-import { routesConfig } from "../routes.config";
 import "./index.css";
 import { routes } from "./routes";
-
-const routesManager = new RoutesManager(routes, routesConfig);
 
 const App = () => {
   // rehydration error 해결.
@@ -20,7 +16,7 @@ const App = () => {
           key={path}
           path={path}
           element={
-            <Layout routesManager={routesManager}>
+            <Layout>
               <RouteComponent />
             </Layout>
           }

@@ -1,6 +1,8 @@
 import SearchBar from "@/components/search-bar/SearchBar";
 import type { FC } from "react";
 import { Link } from "react-router-dom";
+import SunIcon from "@/assets/svg/sun.svg";
+import MoonIcon from "@/assets/svg/moon.svg";
 
 const Navbar: FC = () => (
   <div className="px-20 shadow-md navbar min-h-[25px]">
