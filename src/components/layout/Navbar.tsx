@@ -7,7 +7,7 @@ const Navbar: FC = () => (
     <div className="flex-1">
       <button className="btn btn-ghost">
         <Link to="/">
-          <span className="text-3xl">Ingnyusan</span>
+          <span className="text-3xl capitalize">Ingnyusan</span>
         </Link>
       </button>
     </div>
