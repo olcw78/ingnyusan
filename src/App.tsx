@@ -15,16 +15,17 @@ const App = () => {
 
   return (
     <Routes>
-      {routes.map(route => {
-        const { path, component: RouteComponent } = route;
-        const Element = () => (
-          <Layout routesManager={routesManager}>
-            <RouteComponent />
-          </Layout>
-        );
-
-        return <Route key={path} path={path} element={<Element />} />;
-      })}
+      {routes.map(({ component: RouteComponent, path }) => (
+        <Route
+          key={path}
+          path={path}
+          element={
+            <Layout routesManager={routesManager}>
+              <RouteComponent />
+            </Layout>
+          }
+        />
+      ))}
     </Routes>
   );
 };

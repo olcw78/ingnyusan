@@ -1,17 +1,15 @@
 import { RoutesManager } from "@/routes/RoutesManager";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
 interface NavbarProps {
   routesManager: RoutesManager;
 }
 
-const Navbar = ({ routesManager }: NavbarProps) => (
-  <div className="navbar bg-teal-100 rounded-xl px-20">
+const Navbar: FC<NavbarProps> = ({ routesManager }) => (
+  <div className="navbar bg-teal-100 px-20 min-h-[25px]">
     <div className="flex-1">
-      <Link
-        to="/"
-        className="btn btn-ghost normal-case text-3xl text-slate-600"
-      >
+      <Link to="/" className="btn btn-ghost normal-case text-2xl">
         Ingnyusan
       </Link>
     </div>

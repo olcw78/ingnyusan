@@ -1,5 +1,5 @@
-import type { RoutesConfigT } from "@/routes/RoutesConfig";
+import type { RoutesConfig } from "@/routes/RoutesConfig";
 
-export const routesConfig = {
+export const routesConfig: RoutesConfig = {
   exclude: ["Home"]
-} as RoutesConfigT;
+};

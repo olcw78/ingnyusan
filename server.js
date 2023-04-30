@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 export async function createServer() {
-  const resolve = p => path.resolve(__dirname, p);
+  const resolve = (p) => path.resolve(__dirname, p);
 
   let vite = null;
 

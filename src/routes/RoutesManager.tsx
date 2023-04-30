@@ -1,19 +1,19 @@
 import { RoutesT } from "@/routes";
-import { RoutesConfigT } from "@/routes/RoutesConfig";
+import { RoutesConfig } from "@/routes/RoutesConfig";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 export class RoutesManager {
-  public get routes(): RoutesT {
-    return this._routes;
-  }
-
   public constructor(
     private _routes: RoutesT,
-    private readonly _routeConfig: RoutesConfigT
+    private readonly _routeConfig: RoutesConfig
   ) {
     this.exclude(_routeConfig);
     this.reorderByNavOrder();
+  }
+
+  public get routes(): RoutesT {
+    return this._routes;
   }
 
   public reorderByNavOrder() {
@@ -24,9 +24,9 @@ export class RoutesManager {
 
   public reorderOverride(overrider: { name: string; order: number }[]) {}
 
-  public exclude(config: RoutesConfigT) {
+  public exclude(config: RoutesConfig) {
     for (const ex of config.exclude) {
-      this._routes = this._routes.filter(x => x.name !== ex);
+      this._routes = this._routes.filter((x) => x.name !== ex);
     }
   }
 

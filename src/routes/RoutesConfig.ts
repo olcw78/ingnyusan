@@ -1,3 +1,3 @@
-export interface RoutesConfigT {
-  readonly exclude: string[];
+export interface RoutesConfig {
+  readonly exclude: readonly string[];
 }
