@@ -1,28 +1,27 @@
-import { RoutesManager } from "@/routes/RoutesManager";
-import { FC } from "react";
+import type { FC } from "react";
 import { Link } from "react-router-dom";
 
-interface NavbarProps {
-  routesManager: RoutesManager;
-}
-
-const Navbar: FC<NavbarProps> = ({ routesManager }) => (
-  <div className="navbar px-20 min-h-[25px] shadow-md">
+const Navbar: FC = () => (
+  <div className="px-20 shadow-md navbar min-h-[25px]">
     <div className="flex-1">
       <Link to="/" className="btn btn-ghost">
-        <span className="normal-case text-2xl">Ingnyusan</span>
+        <span className="text-3xl">Ingnyusan</span>
       </Link>
     </div>
 
     <div className="flex-none">
-      <ul className="menu menu-horizontal px-1 gap-x-2">
-        {routesManager.routes?.map(({ path, name }) => (
-          <li key={path}>
-            <Link to={path}>
-              <p className="text-slate-400">{name}</p>
-            </Link>
-          </li>
-        ))}
+      <ul className="gap-x-2 px-1 menu menu-horizontal">
+        <li>
+          <Link to="/Resume">
+            <p className="text-slate-400 text-md">Résumé</p>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/Develop">
+            <p className="text-slate-400 text-md">Develop</p>
+          </Link>
+        </li>
       </ul>
     </div>
   </div>

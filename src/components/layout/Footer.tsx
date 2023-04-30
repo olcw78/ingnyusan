@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Footer: FC = () => (
-  <footer className="footer px-10 bg-base-200 text-base-content h-20 flex items-center">
+  <footer className="flex h-20 items-center px-10 footer bg-base-200 text-base-content">
     <p className="text-2xl">Ingnyusan website</p>
   </footer>
 );

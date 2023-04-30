@@ -6,7 +6,7 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer: FC<MarkdownRendererProps> = ({ markdown }) => (
-  <div className="leading-10 text-xl">
+  <div className="text-xl leading-10">
     <ReactMarkdown>{markdown}</ReactMarkdown>
   </div>
 );

@@ -1,18 +1,21 @@
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
-import { RoutesManager } from "@/routes/RoutesManager";
 import type { FC, PropsWithChildren } from "react";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 interface LayoutProps extends PropsWithChildren {
-  routesManager: RoutesManager;
+  //
 }
 
-const Layout: FC<LayoutProps> = ({ children, routesManager }) => (
+const Layout: FC<LayoutProps> = ({ children }) => (
   <main className="font-pretendard">
-    <Navbar routesManager={routesManager} />
-    <section className="min-h-[100vh] container my-20 px-20">
-      {children}
-    </section>
+    <Navbar />
+    <div className="flex flex-row">
+      <Sidebar />
+      <section className="container min-h-screen px-4 py-5 w-[80%]">
+        {children}
+      </section>
+    </div>
     <Footer />
   </main>
 );
