@@ -1,7 +1,5 @@
 import { RoutesT } from "@/routes";
 import { RoutesConfig } from "@/routes/RoutesConfig";
-import { ReactNode } from "react";
-import { Link } from "react-router-dom";
 
 export class RoutesManager {
   public constructor(
@@ -28,19 +26,5 @@ export class RoutesManager {
     for (const ex of config.exclude) {
       this._routes = this._routes.filter((x) => x.name !== ex);
     }
-  }
-
-  public build(): ReactNode {
-    return (
-      <>
-        {this._routes.map(({ path, name }) => (
-          <li key={path}>
-            <Link to={path}>
-              <p className="text-slate-600">{name}</p>
-            </Link>
-          </li>
-        ))}
-      </>
-    );
   }
 }

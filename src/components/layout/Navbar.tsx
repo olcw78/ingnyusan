@@ -7,16 +7,22 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ routesManager }) => (
-  <div className="navbar bg-teal-100 px-20 min-h-[25px]">
+  <div className="navbar px-20 min-h-[25px] shadow-md">
     <div className="flex-1">
-      <Link to="/" className="btn btn-ghost normal-case text-2xl">
-        Ingnyusan
+      <Link to="/" className="btn btn-ghost">
+        <span className="normal-case text-2xl">Ingnyusan</span>
       </Link>
     </div>
 
     <div className="flex-none">
       <ul className="menu menu-horizontal px-1 gap-x-2">
-        {routesManager.build()}
+        {routesManager.routes?.map(({ path, name }) => (
+          <li key={path}>
+            <Link to={path}>
+              <p className="text-slate-400">{name}</p>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
