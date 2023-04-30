@@ -14,7 +14,7 @@ const Navbar: FC = () => (
 
     <SearchBar />
 
-    <div className="flex-none">
+    <div className="flex-none ml-5">
       <ul className="gap-x-2 px-1 menu menu-horizontal">
         <li>
           <button className="btn btn-ghost">
