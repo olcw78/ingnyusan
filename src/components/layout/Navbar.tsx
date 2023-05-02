@@ -9,23 +9,27 @@ const Navbar: FC = () => {
   const { isDarkmode, toggleDarkmode } = useThemePreferencesContext();
 
   return (
-    <div className="px-20 shadow-md navbar min-h-[25px]">
+    <div className="bg-white px-20 navbar min-h-[25px] shadow-md dark:bg-slate-600 ">
       <div className="flex-1">
         <button className="btn btn-ghost">
           <Link to="/">
-            <span className="text-3xl capitalize">Ingnyusan</span>
+            <span className="text-3xl capitalize text-black dark:text-white">
+              Ingnyusan
+            </span>
           </Link>
         </button>
       </div>
 
       <SearchBar />
 
-      <div className="flex-none ml-5">
+      <div className="ml-5 flex-none">
         <ul className="gap-x-2 px-1 menu menu-horizontal">
           <li>
             <button type="button" className="btn btn-ghost">
               <Link to="/Resume">
-                <p className="text-slate-400 text-md">Résumé</p>
+                <p className="text-slate-400 dark:text-slate-100 text-md">
+                  Résumé
+                </p>
               </Link>
             </button>
           </li>
@@ -33,7 +37,9 @@ const Navbar: FC = () => {
           <li>
             <button type="button" className="btn btn-ghost">
               <Link to="/Develop">
-                <p className="text-slate-400 text-md">Develop</p>
+                <p className="text-slate-400 dark:text-slate-100 text-md">
+                  Develop
+                </p>
               </Link>
             </button>
           </li>

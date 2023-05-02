@@ -2,20 +2,16 @@ import { ThemePreferencesContextWrapper } from "@/feature/theme/ThemePreferences
 import type { FC, PropsWithChildren } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => (
   <main className="font-pretendard">
     <ThemePreferencesContextWrapper>
       <Navbar />
-      <div className="flex flex-row">
-        <Sidebar />
-        <section className="container min-h-screen px-4 py-5 w-[80%]">
-          {children}
-        </section>
-      </div>
+      <section className="min-h-screen py-5 px-[10%] dark:bg-slate-500">
+        {children}
+      </section>
+      <Footer />
     </ThemePreferencesContextWrapper>
-    <Footer />
   </main>
 );
 export default Layout;
