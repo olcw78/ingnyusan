@@ -1,4 +1,4 @@
-import { ThemePreferencesContextWrapper } from "@/state/ThemePreferences";
+import { ThemePreferencesContextWrapper } from "@/feature/theme/ThemePreferencesContextWrapper";
 import type { FC, PropsWithChildren } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";

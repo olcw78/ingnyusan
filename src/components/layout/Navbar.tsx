@@ -1,7 +1,7 @@
 import MoonIcon from "@/assets/svg/moon.svg";
 import SunIcon from "@/assets/svg/sun.svg";
 import SearchBar from "@/components/search-bar/SearchBar";
-import { useThemePreferencesContext } from "@/state/ThemePreferences";
+import { useThemePreferencesContext } from "@/feature/theme/ThemePreferences.context";
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 
