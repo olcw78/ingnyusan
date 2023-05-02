@@ -1,14 +1,12 @@
 import MoonIcon from "@/assets/svg/moon.svg";
 import SunIcon from "@/assets/svg/sun.svg";
 import SearchBar from "@/components/search-bar/SearchBar";
-import { themePreferences, toggleDarkmode } from "@/state/ThemePreferences";
-import { useStore } from "@nanostores/react";
+import { useThemePreferencesContext } from "@/state/ThemePreferences";
 import type { FC } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar: FC = () => {
-  const pref = useStore(themePreferences);
-  const onClickDarkmodeToggleButton = () => toggleDarkmode();
+  const { isDarkmode, toggleDarkmode } = useThemePreferencesContext();
 
   return (
     <div className="px-20 shadow-md navbar min-h-[25px]">
@@ -46,9 +44,9 @@ const Navbar: FC = () => {
         <button
           type="button"
           className="btn btn-ghost"
-          onClick={onClickDarkmodeToggleButton}
+          onClick={toggleDarkmode}
         >
-          <img src={pref.isDarkMode ? MoonIcon : SunIcon} />
+          <img src={isDarkmode ? MoonIcon : SunIcon} />
         </button>
       </div>
     </div>
