@@ -3,11 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
-interface LayoutProps extends PropsWithChildren {
-  //
-}
-
-const Layout: FC<LayoutProps> = ({ children }) => (
+const Layout: FC<PropsWithChildren> = ({ children }) => (
   <main className="font-pretendard">
     <Navbar />
     <div className="flex flex-row">
