@@ -3,6 +3,28 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  }
+    "jsxImportSource": "preact",
+    "baseUrl": ".",
+    "lib": [
+      "es2015",
+      "dom",
+      "dom.iterable"
+    ],
+    "target": "es2015",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "#/*": [
+        "public/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

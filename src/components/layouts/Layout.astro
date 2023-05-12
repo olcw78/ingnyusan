@@ -1,6 +1,7 @@
 ---
+import "@/styles/global.css";
 import BaseHead from "./BaseHead.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 ---
@@ -13,7 +14,7 @@ import Footer from "./Footer.astro";
 
   <body>
     <Header title={SITE_TITLE} />
-    <main>
+    <main class="container mx-auto px-6">
       <slot />
     </main>
     <Footer />
