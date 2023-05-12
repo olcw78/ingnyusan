@@ -1,33 +1,24 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import ThemeIcon from "../ThemeIcon.astro";
-
+import Nav from "./Nav.astro";
 const { title } = Astro.props;
 ---
 
 <header
   class="flex flex-row justify-between items-center mx-[5rem] mt-2 mb-4 sticky"
 >
-  <button type="button" id="logo-button" class="border-0 bg-transparent hover:cursor-pointer">
-    <img src="/img/ing-logo.png" alt={title} width={50} height={50} />
+  <button
+    type="button"
+    id="logo-button"
+    class="border-0 bg-transparent hover:cursor-pointer"
+  >
+    <img
+      src="/src/assets/img/ing-logo.png"
+      alt={title}
+      width={50}
+      height={50}
+    />
   </button>
-
-  <nav class="flex flex-row justify-between items-center">
-    <ul class="gap-x-5 flex flex-row">
-      <HeaderLink href="/blog">blog</HeaderLink>
-      <HeaderLink href="/about">about</HeaderLink>
-      <HeaderLink href="https://github.com/olcw78" target="_blank">
-        <img
-          src="/svg/github-mark.svg"
-          alt="github logo"
-          width={30}
-          height={30}
-        />
-      </HeaderLink>
-    </ul>
-
-    <ThemeIcon />
-  </nav>
+  <Nav />
 </header>
 
 <script>
