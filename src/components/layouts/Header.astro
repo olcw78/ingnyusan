@@ -1,71 +1,71 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import {SITE_TITLE} from '../../consts';
+import HeaderLink from "./HeaderLink.astro";
 import ThemeIcon from "../ThemeIcon.astro";
+
+const { title } = Astro.props;
 ---
 
 <header>
-    <div>
-        <button type="button" id="logo-button">
-            <img src="/img/ing-logo.png" alt={SITE_TITLE} width={50} height={50}/>
-        </button>
-    </div>
+  <button type="button" id="logo-button">
+    <img src="/img/ing-logo.png" alt={title} width={50} height={50} />
+  </button>
 
-    <nav>
-        <ul class="nav-items">
-            <HeaderLink href="/blog">blog</HeaderLink>
-            <HeaderLink href="/about">about</HeaderLink>
-            <HeaderLink href="https://github.com/olcw78" target="_blank">
-                <img src="/svg/github-mark.svg" alt="github logo" width={30} height={30}/>
-            </HeaderLink>
-        </ul>
+  <nav>
+    <ul class="nav-items">
+      <HeaderLink href="/blog">blog</HeaderLink>
+      <HeaderLink href="/about">about</HeaderLink>
+      <HeaderLink href="https://github.com/olcw78" target="_blank">
+        <img
+          src="/svg/github-mark.svg"
+          alt="github logo"
+          width={30}
+          height={30}
+        />
+      </HeaderLink>
+    </ul>
 
-        <ThemeIcon/>
-    </nav>
+    <ThemeIcon />
+  </nav>
 </header>
 
-
 <script>
-    const onClickLogoButton = () => window.location.replace(window.location.origin)
+  const onClickLogoButton = () =>
+    window.location.replace(window.location.origin);
 
-    const logoButtonElement = document.getElementById("logo-button")! as HTMLButtonElement;
-    logoButtonElement.addEventListener("click", onClickLogoButton);
-
+  const logoButtonElement = document.getElementById(
+    "logo-button"
+  )! as HTMLButtonElement;
+  logoButtonElement.addEventListener("click", onClickLogoButton);
 </script>
 
 <style>
-    header {
-        margin: 0 0 2em;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+  header {
+    /*margin: 0 0 2em;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    header div button[type=button] {
-        border: 0;
-        background-color: transparent;
-    }
+  button[type="button"] {
+    border: 0;
+    background-color: transparent;
+  }
 
-    header div button[type=button]:hover {
-        cursor: pointer;
-    }
+  button[type="button"]:hover {
+    cursor: pointer;
+  }
 
-    h2 {
-        margin: 0.5em 0;
-    }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav ul.nav-items {
-        margin-right: 1rem;
-        display: flex;
-        flex-direction: row;
-
-    }
+  nav ul.nav-items {
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
 </style>

@@ -1,12 +1,12 @@
 ---
-import type {HTMLAttributes} from 'astro/types';
-
-type Props = HTMLAttributes<'a'>;
+// import type {HTMLAttributes} from 'astro/types';
+// type Props = HTMLAttributes<'a'>;
 
 const {href, class: className, ...props} = Astro.props;
 
 const {pathname} = Astro.url;
-const isActive = href === pathname || href === pathname.replace(/\/$/, '');
+const isActive = href === pathname ||
+    href === pathname.replace(/\/$/, '');
 ---
 
 <li class="headerLink--root">
@@ -22,7 +22,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
         align-items: center;
     }
 
-    li.headerLink--root a {
+    a {
         text-decoration: none;
         color: black;
     }
