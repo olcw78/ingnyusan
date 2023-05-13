@@ -1,5 +1,4 @@
 import SearchIcon from "@/assets/svg/search.svg";
-import { h } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 const SearchBar = () => {
@@ -11,7 +10,6 @@ const SearchBar = () => {
 
   useEffect(() => {
     if (!searchBarRef?.current) return;
-
     searchBarRef.current.addEventListener("focusout", onFocusOut);
 
     return () => {
@@ -22,12 +20,16 @@ const SearchBar = () => {
   }, [searchBarRef]);
 
   return (
-    <div className="relative">
-      <img src={SearchIcon} alt="search icon svg" className="absolute left-3" />
+    <div className="relative mr-10">
+      <img
+        src={SearchIcon}
+        alt="search icon svg"
+        className="absolute left-3 top-[25%]"
+      />
 
       <input
         type="text"
-        placeholder="Search"
+        placeholder="블로그 검색!"
         onFocus={onFocus}
         className="w-full max-w-sm input input-bordered pl-[50px]"
         ref={searchBarRef}
@@ -35,8 +37,8 @@ const SearchBar = () => {
 
       {!isFocus ? (
         <>
-          <kbd className="absolute right-10 kbd kbd-sm">Ctrl</kbd>
-          <kbd className="absolute right-2 kbd kbd-sm">K</kbd>
+          <kbd className="absolute right-10 top-[25%] kbd kbd-sm">Ctrl</kbd>
+          <kbd className="absolute right-2 top-[25%] kbd kbd-sm">K</kbd>
         </>
       ) : null}
     </div>

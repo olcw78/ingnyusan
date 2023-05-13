@@ -1,12 +1,15 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import ThemeIcon from "../ThemeIcon";
+import Searchbar from "../Searchbar";
 ---
 
-<nav class="flex flex-row justify-between items-center">
+<nav class="flex items-center">
+  <Searchbar client:load />
+
   <ul class="gap-x-5 flex flex-row mr-5">
-    <HeaderLink href="/blog">blog</HeaderLink>
-    <HeaderLink href="/about">about</HeaderLink>
+    <HeaderLink href="/blog">블로그</HeaderLink>
+    <HeaderLink href="/about">어바웃</HeaderLink>
     <HeaderLink href="https://github.com/olcw78" target="_blank">
       <img
         src="/src/assets/svg/github-mark.svg"
