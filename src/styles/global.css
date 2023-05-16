@@ -1,4 +1,4 @@
-@import url("../assets/fonts/pretendardvariable-dynamic-subset.css");
+@import url("../../public/fonts/pretendardvariable-dynamic-subset.css");
 
 @tailwind base;
 @tailwind components;

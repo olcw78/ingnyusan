@@ -17,9 +17,9 @@ const ThemeIcon: FC = () => {
     return (
         <button class="border-0 bg-transparent btn" onClick={toggleTheme}>
             {theme === "light" ? (
-                <img src="../assets/svg/sun.svg" alt="sun icon"/>
+                <img src="/svg/sun.svg" alt="sun icon"/>
             ) : (
-                <img src="../assets/svg/moon.svg" alt="moon icon"/>
+                <img src="/svg/moon.svg" alt="moon icon"/>
             )}
         </button>
     );
