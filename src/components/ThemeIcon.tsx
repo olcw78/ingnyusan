@@ -4,9 +4,9 @@ import {
   preferences,
   toggleTheme,
   loadInitialThemePreferences,
-} from "@/states/Theme.state";
-import SunIcon from "@/assets/svg/Sun.svg";
-import MoonIcon from "@/assets/svg/Moon.svg";
+} from "../states/Theme.state";
+import SunIcon from "../assets/svg/Sun.svg";
+import MoonIcon from "../assets/svg/Moon.svg";
 import { useEffect } from "preact/hooks";
 
 const ThemeIcon: FC = () => {
