@@ -5,7 +5,6 @@ import preact from "@astrojs/preact";
 import tailwind from "@astrojs/tailwind";
 import * as path from "path";
 
-
 // https://astro.build/config
 export default defineConfig({
     site: "https://ingnyusan.com",
@@ -13,7 +12,7 @@ export default defineConfig({
     vite: {
         resolve: {
             alias: {
-                "@": path.join("./src")
+                "@": "./src"
             }
         }
     }
