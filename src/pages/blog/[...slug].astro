@@ -1,21 +1,39 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
+import { groq, useSanityClient } from "astro-sanity";
+import { Blog } from "../../types";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: post,
+  const query = groq`
+      *[_type == "blog"] {
+        title,
+        slug,
+        publishedAt,
+        isPrivate,
+        password,
+        categories,
+        content,
+      }`;
+
+  const responses = await useSanityClient().fetch<Blog[]>(query);
+  return responses.map((blog) => ({
+    params: { slug: blog.slug.current },
+    props: {
+      blog: {
+        ...blog,
+        content: blog.content.flatMap(({ children }) =>
+          children.map((e) => ({
+            type: e._type,
+            text: e.text,
+          }))
+        ),
+      },
+    },
   }));
 }
-type Props = CollectionEntry<"blog">;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const blog = Astro.props;
 ---
 
-<BlogPost {...post.data}>
-  <h1>{post.data.title}</h1>
-  <Content />
-</BlogPost>
+<BlogPost {...blog} />
