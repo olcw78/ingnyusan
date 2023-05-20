@@ -2,6 +2,7 @@
 import HeaderLink from "./HeaderLink.astro";
 import ThemeIcon from "../ThemeIcon";
 import Searchbar from "../Searchbar";
+import Hamburger from "../Hamburger";
 ---
 
 <nav class="flex items-center ">
@@ -30,5 +31,6 @@ import Searchbar from "../Searchbar";
     />
   </HeaderLink>
 
+  <Hamburger client:load />
   <ThemeIcon client:load />
 </nav>
