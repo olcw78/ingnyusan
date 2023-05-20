@@ -10,12 +10,12 @@ const { title, publishedAt, content, isPrivate, categories } = blog;
 
 <Layout>
   <article>
-    <!--{heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
     <h1 class="text-3xl mt-1">{title}</h1>
     <date>{publishedAt}</date>
     {isPrivate && <p>This is Private Post!</p>}
     <ul>
-      {categories?.map((category) => <li>{category}</li>)}
+      {categories?.map((category) =>
+        <li>{category}</li>)}
 
       {
         content?.map(({ type, text }) => (

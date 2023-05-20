@@ -1,5 +1,4 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 import { groq, useSanityClient } from "astro-sanity";
 import { Blog } from "../../types";
@@ -25,15 +24,16 @@ export async function getStaticPaths() {
         content: blog.content.flatMap(({ children }) =>
           children.map((e) => ({
             type: e._type,
-            text: e.text,
+            text: e.text
           }))
-        ),
-      },
-    },
+        )
+      }
+    }
   }));
 }
 
 const blog = Astro.props;
+console.log(blog);
 ---
 
 <BlogPost {...blog} />

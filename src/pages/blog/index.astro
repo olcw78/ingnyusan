@@ -1,27 +1,36 @@
 ---
-import { groq, useSanityClient } from "astro-sanity";
-import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Layout from "../../components/layouts/Layout.astro";
+import { Blog } from "../../types";
+import { groq, useSanityClient } from "astro-sanity";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const query = groq`
+  *[_type == "blog"] {
+    title,
+    slug,
+    publishedAt,    
+  }
+`;
+
+const responses = await useSanityClient().fetch<ReadonlyArray<Blog>>(query);
+const blogs = responses.map((blog) => ({
+  ...blog,
+  slug: blog.slug.current
+}));
+
+type Props = {
+  blogs: ReadonlyArray<Blog>
+}
 ---
 
 <Layout>
   <section>
     <ul class="list-none p-[unset]">
-      {
-        posts.map((post) => (
-          <li class="flex items-center pb-5">
-            <FormattedDate date={post.data.pubDate} />
-            <a href={`/blog/${post.slug}/`} class="visited:accent-amber-300">
-              {post.data.title}
-            </a>
-          </li>
-        ))
-      }
+      {blogs.map((blog) => (
+        <li class="flex items-center pb-5">
+          <a href={"/blog/" + blog.slug}>{blog.title}</a>
+        </li>
+      ))}
     </ul>
   </section>
 </Layout>
