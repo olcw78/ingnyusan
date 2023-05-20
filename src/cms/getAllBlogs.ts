@@ -4,7 +4,9 @@ import type { Blog } from "../types";
 const query = groq`
   *[_type == "blog"] {
     title,
-    slug,
+    slug {
+      current
+    },
     publishedAt,
     isPrivate,
     password,
