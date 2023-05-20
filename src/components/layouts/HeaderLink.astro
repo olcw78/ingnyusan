@@ -1,11 +1,11 @@
 ---
-const { href, isNotFlex, class: className, ...props } = Astro.props;
+const { href, isNotFlex: isListItem, class: className, ...props } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-{!isNotFlex ? (
-<div class="flex justify-center items-center">
+{!isListItem ? (
+<li class="flex justify-center items-center">
   <a
     href={href}
     class:list={[
@@ -17,7 +17,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
   >
     <slot />
   </a>
-</div> )
+</li> )
   : (
 <button class="btn border-0 bg-transparent">
   <a href={href} class:list={[
