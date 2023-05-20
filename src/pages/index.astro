@@ -1,10 +1,37 @@
 ---
 import Layout from "../components/layouts/Layout.astro";
+import { Blog } from "../types";
+import { groq, useSanityClient } from "astro-sanity";
+
+const query = groq`
+  *[_type == "blog"] {
+    title,
+    slug,
+    publishedAt,    
+  }
+`;
+
+const responses = await useSanityClient().fetch<ReadonlyArray<Blog>>(query);
+const blogs = responses.map((blog) => ({
+  ...blog,
+  publishedAt: new Date(blog.publishedAt),
+  slug: blog.slug.current
+}));
+
+type Props = {
+  blogs: ReadonlyArray<Blog>
+}
 ---
 
 <Layout>
-  <section class="section">
-    <div class="container min-h-[85vh]">
-    </div>
+  <section class="min-h-[85vh]">
+    <ul class="list-none p-[unset]">
+      {blogs.map((blog) => (
+        <li class="flex flex-row justify-between items-center pb-5">
+          <a href={"/blog/" + blog.slug}>{blog.title}</a>
+          <date>{blog.publishedAt}</date>
+        </li>
+      ))}
+    </ul>
   </section>
 </Layout>
