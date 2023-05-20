@@ -1,5 +1,5 @@
 ---
-import { getAllBlogOutlines } from "src/cms/getAllBlogOutlines";
+import { getAllBlogOutlines } from "../cms/getAllBlogOutlines";
 import Layout from "../components/layouts/Layout.astro";
 
 const blogOutlines = await getAllBlogOutlines();
@@ -10,8 +10,10 @@ const blogOutlines = await getAllBlogOutlines();
     <ul class="list-none p-[unset]">
       {
         blogOutlines.map((blog) => (
-          <li class="flex flex-row justify-between items-center pb-5">
-            <a href={"/blog/" + blog.slug}>{blog.title}</a>
+          <li class="flex flex-row items-center justify-between px-10 py-10 mb-5 border rounded-sm hover:pointer max-sm:flex-col border-1 border-slate-200">
+            <a href={"/blog/" + blog.slug} class="text-xl font-bold">
+              {blog.title}
+            </a>
             <date>{blog.publishedAt}</date>
           </li>
         ))

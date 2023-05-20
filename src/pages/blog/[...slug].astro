@@ -1,8 +1,9 @@
 ---
 import BlogPost from "../../layouts/BlogPost.astro";
 import { getAllBlogs } from "../../cms/getAllBlogs";
+import type { GetStaticPathsResult } from "astro";
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const blogs = await getAllBlogs();
   return blogs.map((blog) => ({
     params: { slug: blog.slug.current },
@@ -11,6 +12,7 @@ export async function getStaticPaths() {
 }
 
 const blog = Astro.props;
+
 ---
 
 <BlogPost {...blog} />
