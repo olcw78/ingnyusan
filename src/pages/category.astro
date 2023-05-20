@@ -1,9 +1,25 @@
 ---
+import { getAllCategories } from "src/cms/getAllCategories";
 import Layout from "../components/layouts/Layout.astro";
+
+const allCategories = await getAllCategories();
 ---
 
 <Layout>
-  <section class="min-h-[85vh]">
-    <p>Category Page!</p>
+  <section class="min-h-[85vh] px-[20%]">
+    <div class="w-full flex justify-center mb-[100px]">
+      <p class="text-2xl">보고 싶은 포스트의 태그를 선택해주세요.</p>
+    </div>
+    <ul class="flex flex-row flex-wrap justify-center">
+      {
+        allCategories?.map((category) => (
+          <li class="rounded-md mx-3">
+            <button class="btn btn-warning">
+              <span class="text-md font-bold text-white">{category}</span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>
