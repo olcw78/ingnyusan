@@ -11,7 +11,12 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
+const { description, image } = Astro.props;
+let { title } = Astro.props;
+
+if (process.env.NODE_ENV === "development") {
+  title = "[DEV] " + title;
+}
 ---
 
 <!-- Global Metadata -->
