@@ -1,17 +1,19 @@
+interface BlogContent {
+  style: string;
+  children: ReadonlyArray<{
+    _type: string;
+    text: string;
+  }>;
+}
+
 export interface Blog {
   title: string;
   slug: {
     current: string;
   };
-  content: {
-    style: string;
-    children: Array<{
-      _type: string;
-      text: string;
-    }>;
-  };
+  content: BlogContent[];
   publishedAt: Date;
   isPrivate: boolean;
   password?: string;
-  categories?: ReadonlyArray<string>;
+  categories?: readonly string[];
 }
