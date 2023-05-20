@@ -5,7 +5,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
 {!isListItem ? (
-<li class="flex justify-center items-center">
+<li class="flex items-center justify-center">
   <a
     href={href}
     class:list={[
@@ -19,7 +19,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
   </a>
 </li> )
   : (
-<button class="btn border-0 bg-transparent">
+<button class="bg-transparent border-0 btn">
   <a href={href} class:list={[
     className,
     { active: isActive },

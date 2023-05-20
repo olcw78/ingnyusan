@@ -10,7 +10,7 @@ const { title, publishedAt, content, isPrivate, categories } = blog;
 
 <Layout>
   <article>
-    <h1 class="text-3xl mt-1">{title}</h1>
+    <h1 class="mt-1 text-3xl">{title}</h1>
     <date>{publishedAt}</date>
     {isPrivate && <p>This is Private Post!</p>}
     <ul>

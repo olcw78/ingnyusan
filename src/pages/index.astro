@@ -10,7 +10,7 @@ const blogOutlines = await getAllBlogOutlines();
     <ul class="list-none p-[unset]">
       {
         blogOutlines.map((blog) => (
-          <li class="flex flex-row justify-between items-center pb-5">
+          <li class="flex flex-row items-center justify-between pb-5">
             <a href={"/blog/" + blog.slug}>{blog.title}</a>
             <date>{blog.publishedAt}</date>
           </li>
