@@ -1,6 +1,6 @@
 ---
 import BlogPost from "../../layouts/BlogPost.astro";
-import { getAllBlogs } from "src/cms/getAllBlogs";
+import { getAllBlogs } from "../../cms/getAllBlogs";
 
 export async function getStaticPaths() {
   const blogs = await getAllBlogs();
