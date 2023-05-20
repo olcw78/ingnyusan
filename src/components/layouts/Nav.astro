@@ -4,22 +4,31 @@ import ThemeIcon from "../ThemeIcon";
 import Searchbar from "../Searchbar";
 ---
 
-<nav class="flex items-center">
+<nav class="flex items-center ">
   <Searchbar client:load />
 
-  <ul class="gap-x-5 flex flex-row mr-5">
-    <HeaderLink href="/blog">블로그</HeaderLink>
-    <HeaderLink href="/about">어바웃</HeaderLink>
-    <HeaderLink href="/category">카테고리</HeaderLink>
-    <HeaderLink href="https://github.com/olcw78" target="_blank">
-      <img
-        src="/svg/github-mark.svg"
-        alt="github logo"
-        width={30}
-        height={30}
-      />
-    </HeaderLink>
+  <ul class="gap-x-5 flex flex-row mr-5 flex-grow max-lg:hidden">
+    <li>
+      <HeaderLink href="/blog"><p class="flex-nowrap">블로그</p></HeaderLink>
+    </li>
+    <li>
+      <HeaderLink href="/about">어바웃</HeaderLink>
+    </li>
+    <li>
+      <HeaderLink href="/category">카테고리</HeaderLink>
+    </li>
   </ul>
+
+  <HeaderLink
+    href="https://github.com/olcw78"
+    target="_blank"
+    isNotFlex
+  >
+    <img
+      src="/svg/github-mark.svg"
+      alt="github logo"
+    />
+  </HeaderLink>
 
   <ThemeIcon client:load />
 </nav>

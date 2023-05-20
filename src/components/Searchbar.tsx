@@ -19,7 +19,7 @@ const SearchBar = () => {
   }, [searchBarRef]);
 
   return (
-    <div className="relative mr-10">
+    <div className="relative mr-10 block max-lg:hidden">
       <img
         src="/svg/search.svg"
         alt="search icon svg"

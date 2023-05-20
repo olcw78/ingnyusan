@@ -3,8 +3,8 @@ import Nav from "./Nav.astro";
 const { title } = Astro.props;
 ---
 
-<header class="min-w-[100vw] shadow bg-white py-2 mb-10">
-  <div class="flex flex-row justify-between items-center mx-[5rem]">
+<header class="shadow bg-white py-2 mb-10 flex-grow">
+  <div class="flex flex-row max-sm:flex-col justify-between items-center mx-[5rem]">
     <button
       type="button"
       id="logo-button"
@@ -15,9 +15,9 @@ const { title } = Astro.props;
         alt={title}
         width={50}
         height={50}
-        class="mr-2"
+        class="mr-2 max-sm:mr-0"
       />
-      <p class="text-3xl">Ingnyusan</p>
+      <p class="text-3xl max-sm:hidden">Ingnyusan</p>
     </button>
 
     <Nav />

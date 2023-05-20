@@ -1,23 +1,32 @@
 ---
-// import type {HTMLAttributes} from 'astro/types';
-// type Props = HTMLAttributes<'a'>;
-
-const { href, class: className, ...props } = Astro.props;
-
+const { href, isNotFlex, class: className, ...props } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-<li class="flex justify-center items-center">
+{!isNotFlex ? (
+<div class="flex justify-center items-center">
   <a
     href={href}
     class:list={[
       className,
       { active: isActive },
-      "no-underline black hover:font-bold",
+      "no-underline black hover:font-bold"
     ]}
     {...props}
   >
     <slot />
   </a>
-</li>
+</div> )
+  : (
+<button class="btn border-0 bg-transparent">
+  <a href={href} class:list={[
+    className,
+    { active: isActive },
+    "no-underline black hover:font-bold"
+  ]}
+     {...props}
+  >
+    <slot />
+  </a></button>
+  )}
