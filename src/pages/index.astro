@@ -6,18 +6,51 @@ const blogOutlines = await getAllBlogOutlines();
 ---
 
 <Layout>
-  <section class="min-h-[85vh]">
+  <section class="min-h-[85vh] container">
     <ul class="list-none p-[unset]">
       {
         blogOutlines.map((blog) => (
-          <li class="flex flex-row items-center justify-between px-10 py-10 mb-5 border rounded-sm hover:pointer max-sm:flex-col border-1 border-slate-200">
-            <a href={"/blog/" + blog.slug} class="text-xl font-bold">
-              {blog.title}
-            </a>
-            <date>{blog.publishedAt}</date>
+          <li
+            data-slug={blog.slug}
+            class="flex flex-col items-start w-full px-10 py-10 mb-5 border rounded-sm blog-item hover:pointer border-1 border-slate-200"
+          >
+            <div class="flex flex-row items-center justify-between w-full space-x-5 space-y-3 max-sm:flex-col">
+              <section class="w-[80%] flex flex-col flex-nowrap">
+                <p class="text-2xl font-bold">{blog.title}</p>
+                <date class="text-xs">{blog.publishedAt}</date>
+
+                <p class="mt-3 text-sm">{blog.brief}</p>
+              </section>
+
+              <ul class="flex flex-row-reverse flex-wrap max-sm:flex-row max-sm:w-[90%]">
+                {blog.categories?.map((category) => (
+                  <li>
+                    <button class="ml-3 btn btn-xs p-auto">
+                      <span class="text-white">{category}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))
       }
     </ul>
   </section>
 </Layout>
+
+<script>
+  const blogItemElements = document.getElementsByClassName(
+    "blog-item"
+  ) as HTMLCollectionOf<HTMLLIElement>;
+
+  for (const element of blogItemElements) {
+    element.addEventListener("click", function () {
+      redirectToBlogDetail(this.dataset.slug!);
+    });
+  }
+
+  function redirectToBlogDetail(slug: string) {
+    window.location.href = `/blog/${slug}`;
+  }
+</script>
