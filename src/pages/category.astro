@@ -13,9 +13,9 @@ const allCategories = await getAllCategories();
     <ul class="flex flex-row flex-wrap justify-center">
       {
         allCategories?.map((category) => (
-          <li class="rounded-md mx-3">
+          <li class="mx-3 rounded-md">
             <button class="btn btn-warning">
-              <span class="text-md font-bold text-white">{category}</span>
+              <span class="font-bold text-white text-md">{category}</span>
             </button>
           </li>
         ))

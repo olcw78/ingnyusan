@@ -11,9 +11,10 @@ export interface Blog {
   slug: {
     current: string;
   };
-  content: BlogContent[];
+  brief: string;
+  content: readonly BlogContent[];
   publishedAt: Date;
   isPrivate: boolean;
   password?: string;
-  categories?: readonly string[];
+  categories: readonly string[];
 }
