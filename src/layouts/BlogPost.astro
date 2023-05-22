@@ -1,6 +1,7 @@
 ---
-import Layout from "../components/layouts/Layout.astro";
+import Layout from "./Layout.astro";
 import { Blog } from "../types";
+import CategoryItem from "../components/CategoryItem.astro";
 
 // type Props = CollectionEntry<"blog">["data"];
 
@@ -10,19 +11,24 @@ const { title, publishedAt, content, isPrivate, categories } = blog;
 
 <Layout>
   <article>
-    <h1 class="mt-1 text-3xl">{title}</h1>
-    <date>{publishedAt}</date>
+    <div class="flex justify-between">
+      <h1 class="text-3xl mt-1">{title}</h1>
+      <date>{publishedAt}</date>
+    </div>
+
     {isPrivate && <p>This is Private Post!</p>}
+
     <ul>
       {categories?.map((category) =>
-        <li>{category}</li>)}
+        <CategoryItem category={category} />)}
+    </ul>
 
-      {
-        content?.map(({ type, text }) => (
-          <li>
-            <p>{text}</p>
-          </li>
-        ))
+    <ul>
+      {content?.map(({ text }) => (
+        <li>
+          <p>{text}</p>
+        </li>
+      ))
       }
     </ul>
     <hr class="border-t-[1px] border-solid border-slate-300 mt-10" />

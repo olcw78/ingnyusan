@@ -3,13 +3,13 @@ import type { Blog } from "src/types";
 
 const query = groq`
   *[_type == "blog"] {
-   title,
-   slug {
-    current
-   },
-   brief,
-   categories,
-   publishedAt,
+    title,
+    slug {
+     current
+    },
+    brief,
+    categories,
+    publishedAt,
   }
 `;
 
@@ -25,9 +25,8 @@ export async function getAllBlogOutlines(): Promise<readonly BlogOutline[]> {
     const newDate = new Date(outline.publishedAt);
     return {
       ...outline,
-      categories: outline.categories,
-      publishedAt: `${newDate.getMonth() + 1} 월 ${newDate.getDate()} 일`,
-      slug: outline.slug.current,
+      publishedAt: `${newDate.getMonth() + 1}월 ${newDate.getDate()}일`,
+      slug: outline.slug.current
     };
   });
 }

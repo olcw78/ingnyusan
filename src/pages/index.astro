@@ -1,6 +1,6 @@
 ---
 import { getAllBlogOutlines } from "../cms/getAllBlogOutlines";
-import Layout from "../components/layouts/Layout.astro";
+import Layout from "../layouts/Layout.astro";
 
 const blogOutlines = await getAllBlogOutlines();
 ---
@@ -12,7 +12,7 @@ const blogOutlines = await getAllBlogOutlines();
         blogOutlines.map((blog) => (
           <li
             data-slug={blog.slug}
-            class="flex flex-col items-start w-full px-10 py-10 mb-5 ease-in border rounded-sm blog-item hover:bg-slate-50 hover:cursor-pointer border-1 border-slate-200"
+            class="flex flex-col items-start w-full px-10 py-10 mb-5 ease-in border rounded-sm max-sm:px-3 blog-item hover:bg-slate-50 hover:cursor-pointer border-1 border-slate-200"
           >
             <div class="flex flex-row items-center justify-between w-full space-x-5 space-y-3 max-sm:flex-col">
               <section class="w-[80%] flex flex-col flex-nowrap">
