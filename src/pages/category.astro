@@ -1,8 +1,10 @@
 ---
-import { getAllCategories } from "src/cms/getAllCategories";
-import Layout from "../components/layouts/Layout.astro";
+import { getAllCategoriesAndCount } from "src/cms/getAllCategories";
+import Layout from "../layouts/Layout.astro";
+import CategoryItem from "../components/CategoryItem.astro";
 
-const { categories: allCategories, eachCount } = await getAllCategories();
+const { categories: allCategories, eachCount } =
+  await getAllCategoriesAndCount();
 ---
 
 <Layout>
@@ -10,16 +12,11 @@ const { categories: allCategories, eachCount } = await getAllCategories();
     <div class="w-full flex justify-center mb-[100px]">
       <p class="text-2xl">보고 싶은 포스트의 태그를 선택해주세요.</p>
     </div>
+
     <ul class="flex flex-row flex-wrap">
       {
         allCategories?.map((category, i) => (
-          <li class="mx-3 rounded-md">
-            <button class="btn btn-ghost">
-              <span class="font-bold text-md">
-                {category}&nbsp;({eachCount[i]})
-              </span>
-            </button>
-          </li>
+          <CategoryItem category={`${category} (${eachCount[i]})`} />
         ))
       }
     </ul>
