@@ -28,7 +28,7 @@ const md = await markdown(res);
 ---
 
 <Layout>
-  <article class="px-20">
+  <article class="px-20 max-sm:px-6">
     <div class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]">
       <h1 class="text-3xl mt-1">{title}</h1>
       <date class="text-slate-500">{date}</date>
@@ -41,10 +41,12 @@ const md = await markdown(res);
         <CategoryItem category={category} isTextOnly />)}
     </ul>
 
-    <div class="min-h-[70vh] mt-10 mx-1">
+    <section class="min-h-[70vh] mt-10 mx-1">
       {md}
-    </div>
-    <hr class="border-t-[1px] border-solid border-slate-300 mt-10" />
+    </section>
+
+    <hr class="border-t-[1px] border-solid border-slate-300 my-10" />
+
     <slot />
   </article>
 </Layout>
