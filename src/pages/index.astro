@@ -15,15 +15,15 @@ const blogOutlines = await getAllBlogOutlines();
             data-slug={blog.slug}
             class="flex flex-col items-start w-full px-10 py-10 mb-5 ease-in border rounded-sm max-sm:px-3 blog-item hover:bg-slate-50 hover:cursor-pointer border-1 border-slate-200"
           >
-            <div class="flex flex-row items-center justify-between w-full space-x-5 space-y-3 max-sm:flex-col">
+            <div class="flex flex-row items-center justify-between w-full max-sm:flex-col">
               <section class="w-[80%] flex flex-col flex-nowrap">
                 <p class="text-2xl font-bold">{blog.title}</p>
                 <date class="text-xs">{blog.publishedAt}</date>
 
-                <p class="mt-3 text-sm">{blog.brief}</p>
+                <p class="my-3 text-sm">{blog.brief}</p>
               </section>
 
-              <ul class="flex flex-row-reverse flex-wrap max-sm:flex-row max-sm:w-[90%] gap-2">
+              <ul class="flex flex-row-reverse flex-wrap max-sm:flex-row max-sm:w-[80%] gap-2">
                 {blog.categories?.map((category) => (
                   <CategoryItem category={category} />
                 ))}
