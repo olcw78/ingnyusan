@@ -1,9 +1,14 @@
+// interface BlogContent {
+//   style: string;
+//   children: ReadonlyArray<{
+//     _type: string;
+//     text: string;
+//   }>;
+// }
+
 interface BlogContent {
-  style: string;
-  children: ReadonlyArray<{
-    _type: string;
-    text: string;
-  }>;
+  _type: string;
+  text: string;
 }
 
 export interface Blog {
@@ -12,7 +17,7 @@ export interface Blog {
     current: string;
   };
   brief: string;
-  content: readonly BlogContent[];
+  contents: readonly BlogContent[];
   publishedAt: Date;
   isPrivate: boolean;
   password?: string;

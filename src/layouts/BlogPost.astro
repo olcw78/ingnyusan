@@ -3,10 +3,8 @@ import Layout from "./Layout.astro";
 import { Blog } from "../types";
 import CategoryItem from "../components/CategoryItem.astro";
 
-// type Props = CollectionEntry<"blog">["data"];
-
-const { blog } = Astro.props as Blog;
-const { title, publishedAt, content, isPrivate, categories } = blog;
+const { blog } = Astro.props as { blog: Blog };
+const { title, publishedAt, contents, isPrivate, categories } = blog;
 ---
 
 <Layout>
@@ -24,12 +22,11 @@ const { title, publishedAt, content, isPrivate, categories } = blog;
     </ul>
 
     <ul>
-      {content?.map(({ text }) => (
+      {contents?.map((content) => (
         <li>
-          <p>{text}</p>
+          <p>{content.text}</p>
         </li>
-      ))
-      }
+      ))}
     </ul>
     <hr class="border-t-[1px] border-solid border-slate-300 mt-10" />
     <slot />
