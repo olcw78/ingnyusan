@@ -1,6 +1,7 @@
 ---
 import { getAllBlogOutlines } from "../cms/getAllBlogOutlines";
 import Layout from "../layouts/Layout.astro";
+import CategoryItem from "../components/CategoryItem.astro";
 
 const blogOutlines = await getAllBlogOutlines();
 ---
@@ -24,33 +25,29 @@ const blogOutlines = await getAllBlogOutlines();
 
               <ul class="flex flex-row-reverse flex-wrap max-sm:flex-row max-sm:w-[90%] gap-2">
                 {blog.categories?.map((category) => (
-                  <li>
-                    <button class="btn btn-xs p-auto">
-                      <span class="text-white">{category}</span>
-                    </button>
-                  </li>
+                  <CategoryItem category={category} />
                 ))}
               </ul>
             </div>
           </li>
         ))
-      }
-    </ul>
-  </section>
-</Layout>
+        }
+        </ul>
+        </section>
+        </Layout>
 
-<script>
-  const blogItemElements = document.getElementsByClassName(
-    "blog-item"
-  ) as HTMLCollectionOf<HTMLLIElement>;
+        <script>
+          const blogItemElements = document.getElementsByClassName(
+            "blog-item"
+          ) as HTMLCollectionOf<HTMLLIElement>;
 
-  for (const element of blogItemElements) {
-    element.addEventListener("click", function () {
-      redirectToBlogDetail(this.dataset.slug!);
-    });
-  }
+          for (const element of blogItemElements) {
+            element.addEventListener("click", function() {
+              redirectToBlogDetail(this.dataset.slug!);
+            });
+          }
 
-  function redirectToBlogDetail(slug: string) {
-    window.location.href = `/blog/${slug}`;
-  }
-</script>
+          function redirectToBlogDetail(slug: string) {
+            window.location.href = `/blog/${slug}`;
+          }
+          </script>

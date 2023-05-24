@@ -15,23 +15,8 @@ const query = groq`
   }
 `;
 
-interface FilteredBlog extends Omit<Blog, "contents"> {
-  content: readonly {
-    type: string;
-    text: string;
-  }[];
-}
-
-export async function getAllBlogs(): Promise<readonly FilteredBlog[]> {
+export async function getAllBlogs(): Promise<readonly Blog[]> {
   const fetchedBlogs = await useSanityClient().fetch<readonly Blog[]>(query);
-  return fetchedBlogs.map((blog) => ({
-    ...blog,
-    content: blog.contents.flatMap(({ children }) =>
-      children.map((child) => ({
-        type: child._type,
-        text: child.text,
-      }))
-    )
-  }));
+  return fetchedBlogs;
 }
 

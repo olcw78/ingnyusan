@@ -4,29 +4,37 @@ import { Blog } from "../types";
 import CategoryItem from "../components/CategoryItem.astro";
 
 const { blog } = Astro.props as { blog: Blog };
-const { title, publishedAt, contents, isPrivate, categories } = blog;
+const { title, publishedAt, content, isPrivate, categories } = blog;
+const asDate = new Date(publishedAt);
+const date = `
+  ${asDate.getFullYear()}년 
+  ${asDate.getMonth() + 1}월 
+  ${asDate.getDate()}일 
+  ${asDate.getHours()}:${asDate.getMinutes()}`;
 ---
 
 <Layout>
-  <article>
-    <div class="flex justify-between">
+  <article class="px-20">
+    <div class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]">
       <h1 class="text-3xl mt-1">{title}</h1>
-      <date>{publishedAt}</date>
+      <date class="text-slate-500">{date}</date>
     </div>
 
     {isPrivate && <p>This is Private Post!</p>}
 
-    <ul>
+    <ul class="mb-3 flex flex-row gap-2 items-center max-sm:flex-col max-sm:items-baseline">
       {categories?.map((category) =>
-        <CategoryItem category={category} />)}
+        <CategoryItem category={category} isTextOnly />)}
     </ul>
 
-    <ul>
-      {contents?.map((content) => (
+    <hr class="divider-horizontal w-full" />
+
+    <ul class="min-h-[70vh] mt-10 mx-1">
+      {content?.flatMap(({ children }) => children.map(({ text }) => (
         <li>
-          <p>{content.text}</p>
+          <p>{text}</p>
         </li>
-      ))}
+      )))}
     </ul>
     <hr class="border-t-[1px] border-solid border-slate-300 mt-10" />
     <slot />

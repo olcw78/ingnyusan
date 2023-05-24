@@ -1,11 +1,9 @@
 ---
-const { category } = Astro.props;
+const { category, isTextOnly = false } = Astro.props;
 ---
 
-<li class="mx-3 rounded-md">
-  <button class="btn btn-ghost">
-    <span class="font-bold text-md">
-      {category}
-    </span>
+<li class="rounded-md">
+  <button class={isTextOnly ? "btn btn-xs btn-ghost p-auto" : "btn btn-xs p-auto"}>
+    <span class={!isTextOnly && "text-white"}>{category}</span>
   </button>
 </li>
