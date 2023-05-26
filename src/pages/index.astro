@@ -1,7 +1,8 @@
 ---
 import { getAllBlogOutlines } from "../cms/getAllBlogOutlines";
 import Layout from "../layouts/Layout.astro";
-import CategoryItem from "../components/CategoryItem.astro";
+import CategoryItem from "../components/category/CategoryItem.astro";
+import CategoryContainer from "../components/category/CategoryContainer.astro";
 
 const blogOutlines = await getAllBlogOutlines();
 ---
@@ -21,11 +22,11 @@ const blogOutlines = await getAllBlogOutlines();
               <p class="my-3 text-sm">{blog.brief}</p>
             </section>
 
-            <ul class="flex flex-row-reverse flex-wrap max-sm:flex-row max-sm:w-[80%] gap-2">
+           <CategoryContainer isReverse>
               {blog.categories?.map((category) => (
                 <CategoryItem category={category} />
               ))}
-            </ul>
+           </CategoryContainer>
           </div>
         </li>))}
     </ul>
