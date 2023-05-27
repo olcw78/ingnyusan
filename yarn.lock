@@ -129,6 +129,13 @@
     babel-plugin-module-resolver "^5.0.0"
     preact-render-to-string "^5.2.4"
 
+"@astrojs/prefetch@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@astrojs/prefetch/-/prefetch-0.2.3.tgz#00fa61dbbdcd71101948e25634ef911f65a791dc"
+  integrity sha512-r51t4fkGcePA6FHFVDD5vC/whhoKWFSaKNug/4Z2FSKZZga9yjb2qDcrul7u32nVDN+30ywZ/RQAmBMrHOmLiw==
+  dependencies:
+    throttles "^1.0.1"
+
 "@astrojs/prism@^2.1.0", "@astrojs/prism@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@astrojs/prism/-/prism-2.1.1.tgz#5f6ae1ab5b630889a8850ba2c991888ed92a3c7a"
@@ -4424,6 +4431,11 @@ thenify-all@^1.0.0:
   integrity sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==
   dependencies:
     any-promise "^1.0.0"
+
+throttles@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/throttles/-/throttles-1.0.1.tgz#3abdcde28df88d5eddf7e57cad8da35bd403ddd0"
+  integrity sha512-fab7Xg+zELr9KOv4fkaBoe/b3L0GMGLd0IBSCn16GoE/Qx6/OfCr1eGNyEcDU2pUA79qQfZ8kPQWlRuok4YwTw==
 
 through2@~2.0.3:
   version "2.0.5"
