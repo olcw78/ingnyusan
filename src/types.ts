@@ -14,7 +14,7 @@ export interface Blog {
   brief: string;
   content: readonly BlogContent[];
   publishedAt: Date;
-  isPrivate: boolean;
+  isPrivate?: boolean;
   password?: string;
   categories: readonly string[];
 }

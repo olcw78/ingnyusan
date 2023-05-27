@@ -16,12 +16,4 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { blog } = Astro.props;
 ---
 
-{
-  blog.isPrivate && blog.password ? (
-    <CheckSecret matchingPassword={blog.password}>
-      <BlogPost {...blog} />
-    </CheckSecret>
-  ) : (
-    <BlogPost {...blog} />
-  )
-}
+<BlogPost {...blog} />

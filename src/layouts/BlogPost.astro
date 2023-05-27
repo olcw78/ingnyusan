@@ -1,11 +1,21 @@
 ---
 import Layout from "./Layout.astro";
-import { Blog } from "../types";
-import CategoryItem from "../components/category/CategoryItem.astro";
+import type { Blog } from "../types";
+import CategoryItem from "@/components/category/CategoryItem.astro";
 import { markdown } from "@astropub/md";
+import CheckSecretModal from "@/components/secret/CheckSecretModal";
 
-const { blog } = Astro.props as { blog: Blog };
-const { title, publishedAt, content, isPrivate, categories } = blog;
+type Props = Blog;
+const blog = Astro.props;
+
+const {
+  title,
+  publishedAt,
+  content,
+  categories,
+  isPrivate,
+  password: matchingPassword,
+} = blog;
 
 const asDate = new Date(publishedAt);
 const date = `
@@ -15,7 +25,7 @@ const date = `
   ${asDate.getHours()}:${asDate.getMinutes()}`;
 
 const text = content?.flatMap(({ children }) =>
-  children.map(({ text }) => text)
+  children?.map(({ text }) => text)
 )!;
 
 let res = ``;
@@ -25,20 +35,42 @@ for (let x of text) {
 }
 
 const md = await markdown(res);
+
+let isUnlocked = false;
+function unlock(after: () => void) {
+  isUnlocked = true;
+  after?.();
+}
 ---
 
 <Layout>
+  <!-- {
+    isPrivate && !isUnlocked && (
+      <CheckSecretModal
+        client:load
+        title={title}
+        matchingPassword={matchingPassword}
+        unlock={unlock}
+      />
+    )
+  } -->
+
   <article class="px-20 max-sm:px-6">
-    <div class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]">
+    <div
+      class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]"
+    >
       <h1 class="text-3xl mt-1">{title}</h1>
       <date class="text-slate-500">{date}</date>
     </div>
 
-    {isPrivate && <p>This is Private Post!</p>}
-
-    <ul class="mb-3 flex flex-row gap-0.5 items-center max-sm:flex-col max-sm:items-baseline">
-      {categories?.map((category) =>
-        <CategoryItem category={category} isTextOnly />)}
+    <ul
+      class="mb-3 flex flex-row gap-0.5 items-center max-sm:flex-col max-sm:items-baseline"
+    >
+      {
+        categories?.map((category) => (
+          <CategoryItem category={category} isTextOnly />
+        ))
+      }
     </ul>
 
     <section class="min-h-[70vh] mt-10 mx-1">

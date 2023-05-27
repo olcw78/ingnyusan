@@ -1,13 +1,15 @@
 ---
 interface Props {
-  category: readonly string[];
+  category: string;
   isTextOnly?: boolean;
 }
 const { category, isTextOnly = false } = Astro.props;
 ---
 
 <li class="rounded-md hover:bg-slate-300">
-  <button class={isTextOnly ? "btn btn-xs btn-ghost p-auto" : "btn btn-xs p-auto"}>
-    <span class={!isTextOnly && "text-white"}>{category}</span>
+  <button
+    class={isTextOnly ? "btn btn-xs btn-ghost p-auto" : "btn btn-xs p-auto"}
+  >
+    <span class={!isTextOnly ? "text-white" : ""}>{category}</span>
   </button>
 </li>
