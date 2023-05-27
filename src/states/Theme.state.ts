@@ -48,12 +48,12 @@ export const loadInitialThemePreferences = () => {
 
 export const setDarkTheme = () => {
   preferences.setKey("theme", "dark");
-  document.documentElement.setAttributeNS()
+  // document.documentElement.setAttributeNS()
 };
 
 export const setLightTheme = () => {
   preferences.setKey("theme", "light");
-  document.documentElement['theme']! = 'light';
+  // document.documentElement['theme']! = 'light';
 };
 
 export const toggleTheme = () => {

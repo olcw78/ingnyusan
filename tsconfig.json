@@ -16,7 +16,13 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "allowJs": true
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "$/*": ["public/*"]
+    }
   },
   "exclude": [
     "node_modules"

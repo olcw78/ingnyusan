@@ -1,18 +1,27 @@
 ---
 import BlogPost from "../../layouts/BlogPost.astro";
 import { getAllBlogs } from "../../cms/getAllBlogs";
-import type { GetStaticPathsResult } from "astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import CheckSecret from "@/components/secret/CheckSecret.astro";
 
-export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+export const getStaticPaths = (async () => {
   const blogs = await getAllBlogs();
   return blogs.map((blog) => ({
     params: { slug: blog.slug.current },
     props: { blog },
   }));
-}
+}) satisfies GetStaticPaths;
 
-const blog = Astro.props;
-
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { blog } = Astro.props;
 ---
 
-<BlogPost {...blog} />
+{
+  blog.isPrivate && blog.password ? (
+    <CheckSecret matchingPassword={blog.password}>
+      <BlogPost {...blog} />
+    </CheckSecret>
+  ) : (
+    <BlogPost {...blog} />
+  )
+}
