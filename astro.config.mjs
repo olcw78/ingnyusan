@@ -11,15 +11,23 @@ const sanityCfg = {
   title: "ingnyusan-blog-cms",
   projectId: "07nhbugi",
   dataset: "production",
-  useCdn: true
-};
-const imageCfg = {
-  serviceEntryPoint: "@astrojs/image/sharp"
+  useCdn: true,
 };
 
+const imageCfg = {
+  serviceEntryPoint: "@astrojs/image/sharp",
+};
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://ingnyusan.com",
-  integrations: [mdx(), sitemap(), preact(), tailwind(), sanity(sanityCfg), image(imageCfg), prefetch()]
+  integrations: [
+    mdx(),
+    sitemap(),
+    preact(),
+    tailwind(),
+    sanity(sanityCfg),
+    image(imageCfg),
+    prefetch(),
+  ],
 });
