@@ -35,26 +35,14 @@ for (let x of text) {
 }
 
 const md = await markdown(res);
-
-let isUnlocked = false;
-function unlock(after: () => void) {
-  isUnlocked = true;
-  after?.();
-}
 ---
 
 <Layout>
-  <!-- {
-    isPrivate && !isUnlocked && (
-      <CheckSecretModal
-        client:load
-        title={title}
-        matchingPassword={matchingPassword}
-        unlock={unlock}
-      />
+  {
+    isPrivate && (
+      <CheckSecretModal title={title} matchingPassword={matchingPassword} />
     )
-  } -->
-
+  }
   <article class="px-20 max-sm:px-6">
     <div
       class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]"
@@ -82,3 +70,21 @@ function unlock(after: () => void) {
     <slot />
   </article>
 </Layout>
+
+<script>
+  const checkSecretModalRootElement = document.getElementById(
+    "check-secret-modal"
+  ) as HTMLDivElement;
+
+  const unlockButtonElement = document.getElementById(
+    "secret-unlock-button"
+  ) as HTMLButtonElement;
+  unlockButtonElement.onclick = function (event) {
+    event.preventDefault();
+    console.log("click unlock!");
+
+    if (checkSecretModalRootElement.classList.contains("visible")) {
+      checkSecretModalRootElement.classList.replace("visible", "hidden");
+    }
+  };
+</script>

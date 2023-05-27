@@ -2,21 +2,17 @@ import {
   ChangeEventHandler,
   FC,
   PropsWithChildren,
-  useEffect,
-  useRef,
   useState,
 } from "preact/compat";
 
 interface CheckSecretModalProps extends PropsWithChildren {
   title: string;
   matchingPassword?: string;
-  unlock: (afterFn: () => void) => void;
 }
 
 const CheckSecretModal: FC<CheckSecretModalProps> = ({
   title,
   matchingPassword,
-  unlock,
 }) => {
   const [inputPassword, setInputPassword] = useState("");
 
@@ -24,27 +20,53 @@ const CheckSecretModal: FC<CheckSecretModalProps> = ({
     setInputPassword(e.currentTarget.value);
   };
 
-  const onUnlock: ChangeEventHandler<HTMLButtonElement> = (e) => {
-    unlock(() => {
-      console.log("unlock!!!");
-    });
-  };
-
   return (
-    <div className="modal bg-slate-800 opacity-100 visible z-10">
-      <div className="modal-box">
-        <h3 className="font-bold text-lg">{title} 의 비밀번호는?</h3>
+    <div
+      id="check-secret-modal"
+      class="fixed top-0 left-0 w-screen h-screen visible bg-slate-900"
+    >
+      <div class="modal-box relative top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+        <div className="flex justify-center my-10">
+          <h3 class="font-bold text-lg">
+            <span className="font-xl text-primary">{title}</span> 의 비밀번호는?
+          </h3>
+        </div>
 
-        <input
-          type="text"
-          className="input max-w-xs w-full z-20"
-          value={inputPassword}
-          onChange={updateInputPassword}
-        />
+        <div className="flex justify-between my-3 w-[80%] mx-auto">
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
 
-        <div className="modal-action">
-          <button className="btn btn-sm btn-ghost" onClick={onUnlock}>
-            입력하기
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
+
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
+
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
+
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
+
+          <input
+            type="password"
+            class="input input-bordered w-[50px] h-[50px]"
+          />
+        </div>
+
+        <div class="modal-action">
+          <button id="secret-unlock-button" class="btn btn-sm btn-ghost">
+            <span className="font-bold text-xl text-primary">언락!</span>
           </button>
         </div>
       </div>
