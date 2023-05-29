@@ -73,9 +73,11 @@ const minutes = Math.round(readingTimeResult.minutes);
       }
     </ul>
 
-    <article class="min-h-[70vh] mt-10 mx-1 leading-[3rem] text-lg break-words">
-      {md}
-    </article>
+    <article
+      id="md-root"
+      class="min-h-[70vh] mt-10 mx-1 leading-[3rem] text-lg break-words"
+      set:html={md}
+    />
 
     <hr class="border-t-[1px] border-solid border-slate-300 my-10" />
 
