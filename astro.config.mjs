@@ -8,6 +8,7 @@ import image from "@astrojs/image";
 import prefetch from "@astrojs/prefetch";
 import markdown from "@astropub/md";
 import rehypeSanitize from "rehype-sanitize";
+import rehypeExternalLinks from "rehype-external-links";
 
 const sanityCfg = {
   name: "default",
@@ -26,7 +27,14 @@ export default defineConfig({
   site: "https://ingnyusan.com",
   markdown: {
     remarkPlugins: [],
-    rehypePlugins: [],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          content: { type: "text", value: " 🔗" },
+        },
+      ],
+    ],
     syntaxHighlight: "shiki",
   },
   integrations: [
