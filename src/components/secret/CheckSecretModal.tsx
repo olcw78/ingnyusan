@@ -23,11 +23,11 @@ const CheckSecretModal: FC<CheckSecretModalProps> = ({
   return (
     <div
       id="check-secret-modal"
-      class="fixed top-0 left-0 w-screen h-screen visible bg-slate-900"
+      class="fixed top-0 left-0 visible w-screen h-screen bg-slate-900"
     >
       <div class="modal-box relative top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
         <div className="flex justify-center my-10">
-          <h3 class="font-bold text-lg">
+          <h3 class="text-lg font-bold">
             <span className="font-xl text-primary">{title}</span> 의 비밀번호는?
           </h3>
         </div>
@@ -66,7 +66,7 @@ const CheckSecretModal: FC<CheckSecretModalProps> = ({
 
         <div class="modal-action">
           <button id="secret-unlock-button" class="btn btn-sm btn-ghost">
-            <span className="font-bold text-xl text-primary">언락!</span>
+            <span className="text-xl font-bold text-primary">언락!</span>
           </button>
         </div>
       </div>
