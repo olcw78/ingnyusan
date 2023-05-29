@@ -14,15 +14,12 @@
     "@astrojs/prefetch": "^0.2.3",
     "@nanostores/persistent": "^0.8.0",
     "@nanostores/preact": "^0.4.1",
-    "@portabletext/to-html": "^2.0.0",
     "astro-sanity": "^1.1.7",
-    "marked": "^5.0.3",
     "mdast-util-to-string": "^3.2.0",
     "nanostores": "^0.8.1",
     "preact": "^10.6.5",
     "reading-time": "^1.5.0",
-    "rehype-external-links": "^2.1.0",
-    "rehype-sanitize": "^5.0.1"
+    "rehype-external-links": "^2.1.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.19.1",

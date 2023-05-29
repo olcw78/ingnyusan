@@ -7,7 +7,6 @@ import sanity from "astro-sanity";
 import image from "@astrojs/image";
 import prefetch from "@astrojs/prefetch";
 import markdown from "@astropub/md";
-import rehypeSanitize from "rehype-sanitize";
 import rehypeExternalLinks from "rehype-external-links";
 
 const sanityCfg = {
