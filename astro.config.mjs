@@ -6,6 +6,7 @@ import tailwind from "@astrojs/tailwind";
 import sanity from "astro-sanity";
 import image from "@astrojs/image";
 import prefetch from "@astrojs/prefetch";
+import { remarkReadingTime } from "./remark-reading-time.mjs";
 const sanityCfg = {
   name: "default",
   title: "ingnyusan-blog-cms",
@@ -21,6 +22,9 @@ const imageCfg = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://ingnyusan.com",
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
+  },
   integrations: [
     mdx(),
     sitemap(),

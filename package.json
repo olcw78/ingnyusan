@@ -16,8 +16,10 @@
     "@nanostores/preact": "^0.4.1",
     "@portabletext/to-html": "^2.0.0",
     "astro-sanity": "^1.1.7",
+    "mdast-util-to-string": "^3.2.0",
     "nanostores": "^0.8.1",
-    "preact": "^10.6.5"
+    "preact": "^10.6.5",
+    "reading-time": "^1.5.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "^0.19.1",
