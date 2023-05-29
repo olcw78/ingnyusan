@@ -6,6 +6,9 @@ import tailwind from "@astrojs/tailwind";
 import sanity from "astro-sanity";
 import image from "@astrojs/image";
 import prefetch from "@astrojs/prefetch";
+import markdown from "@astropub/md";
+import rehypeSanitize from "rehype-sanitize";
+
 const sanityCfg = {
   name: "default",
   title: "ingnyusan-blog-cms",
@@ -21,6 +24,11 @@ const imageCfg = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://ingnyusan.com",
+  markdown: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    syntaxHighlight: "shiki",
+  },
   integrations: [
     mdx(),
     sitemap(),
@@ -29,5 +37,6 @@ export default defineConfig({
     sanity(sanityCfg),
     image(imageCfg),
     prefetch(),
+    markdown(),
   ],
 });

@@ -4,6 +4,7 @@ import type { Blog } from "../types";
 import CategoryItem from "@/components/category/CategoryItem.astro";
 import { markdown } from "@astropub/md";
 import CheckSecretModal from "@/components/secret/CheckSecretModal";
+import getReadingTime from "reading-time";
 
 type Props = Blog;
 const blog = Astro.props;
@@ -34,7 +35,10 @@ for (let x of text) {
   res += "\n";
 }
 
-const md = await markdown(res);
+const md = await markdown(res, {});
+
+const readingTimeResult = getReadingTime(text.join(""));
+const minutes = Math.round(readingTimeResult.minutes);
 ---
 
 <Layout>
@@ -43,12 +47,20 @@ const md = await markdown(res);
       <CheckSecretModal title={title} matchingPassword={matchingPassword} />
     )
   }
+
   <article class="px-20 max-sm:px-6">
-    <div
-      class="flex flex-row justify-between items-center max-sm:flex-col max-sm:gap-3 mb-[50px]"
-    >
-      <h1 class="text-3xl mt-1">{title}</h1>
-      <date class="text-slate-500">{date}</date>
+    <h1 class="mb-[50px] mt-1 text-4xl">{title}</h1>
+
+    <div class="flex flex-col justify-center gap-3 mb-[20px]">
+      <div class="flex items-center">
+        <p class="text-slate-500">출판일자&nbsp;</p>
+        <time class="text-slate-700 text-lg">{date}</time>
+      </div>
+      <p class="text-slate-500">
+        읽는 데 걸리는 시간 <span class="text-slate-700 text-lg"
+          >{minutes}분</span
+        >
+      </p>
     </div>
 
     <ul
@@ -61,9 +73,9 @@ const md = await markdown(res);
       }
     </ul>
 
-    <section class="min-h-[70vh] mt-10 mx-1">
+    <article class="min-h-[70vh] mt-10 mx-1 leading-[3rem] text-lg break-words">
       {md}
-    </section>
+    </article>
 
     <hr class="border-t-[1px] border-solid border-slate-300 my-10" />
 
