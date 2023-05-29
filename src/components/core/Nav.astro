@@ -1,29 +1,26 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import ThemeIcon from "../ThemeIcon";
-import Searchbar from "../Searchbar";
-import Hamburger from "../Hamburger";
+import ThemeIcon from "../nav/ThemeIcon";
+import Searchbar from "../nav/Searchbar";
+import Hamburger from "../nav/Hamburger";
 ---
 
-<nav class="flex items-center ">
-  <Searchbar client:load />
+<nav class="flex items-center">
+  <Searchbar client:idle />
 
   <ul class="flex flex-row flex-grow mr-5 gap-x-5 max-lg:hidden">
     <HeaderLink href="/about">어바웃</HeaderLink>
     <HeaderLink href="/category">카테고리</HeaderLink>
   </ul>
 
-  <HeaderLink
-    href="https://github.com/olcw78"
-    target="_blank"
-    isNotFlex
-  >
+  <HeaderLink href="https://github.com/olcw78" target="_blank" isNotFlex>
     <img
       src="/svg/github-mark.svg"
       alt="github logo"
+      class="mr-3 max-sm:mr-0"
     />
   </HeaderLink>
 
-  <Hamburger client:load />
-  <ThemeIcon client:load />
+  <Hamburger client:idle />
+  <ThemeIcon client:idle />
 </nav>

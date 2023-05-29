@@ -6,7 +6,9 @@ import tailwind from "@astrojs/tailwind";
 import sanity from "astro-sanity";
 import image from "@astrojs/image";
 import prefetch from "@astrojs/prefetch";
-import { remarkReadingTime } from "./remark-reading-time.mjs";
+import markdown from "@astropub/md";
+import rehypeSanitize from "rehype-sanitize";
+
 const sanityCfg = {
   name: "default",
   title: "ingnyusan-blog-cms",
@@ -23,7 +25,9 @@ const imageCfg = {
 export default defineConfig({
   site: "https://ingnyusan.com",
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [],
+    rehypePlugins: [],
+    syntaxHighlight: "shiki",
   },
   integrations: [
     mdx(),
@@ -33,5 +37,6 @@ export default defineConfig({
     sanity(sanityCfg),
     image(imageCfg),
     prefetch(),
+    markdown(),
   ],
 });

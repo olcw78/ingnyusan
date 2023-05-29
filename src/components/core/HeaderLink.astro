@@ -4,29 +4,32 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-{!isListItem ? (
-<li class="flex items-center justify-center">
-  <a
-    href={href}
-    class:list={[
-      className,
-      { active: isActive },
-      "no-underline black hover:font-bold"
-    ]}
-    {...props}
-  >
-    <slot />
-  </a>
-</li> )
-  : (
-<button class="bg-transparent border-0 btn">
-  <a href={href} class:list={[
-    className,
-    { active: isActive },
-    "no-underline black hover:font-bold"
-  ]}
-     {...props}
-  >
-    <slot />
-  </a></button>
-  )}
+{
+  !isListItem ? (
+    <li class="flex items-center justify-center">
+      <a
+        href={href}
+        class:list={[
+          className,
+          { active: isActive },
+          "no-underline black active:font-bold hover:font-bold",
+        ]}
+        {...props}
+      >
+        <slot />
+      </a>
+    </li>
+  ) : (
+    <a
+      href={href}
+      class:list={[
+        className,
+        { active: isActive },
+        "no-underline black hover:font-bold active:font-bold",
+      ]}
+      {...props}
+    >
+      <slot />
+    </a>
+  )
+}
