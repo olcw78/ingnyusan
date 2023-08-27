@@ -1,12 +1,12 @@
 ---
-const { href, isNotFlex: isListItem, class: className, ...props } = Astro.props;
+const { href, class: className, ...props } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
 {
-  !isListItem ? (
-    <li class="flex items-center justify-center">
+  (
+    <li>
       <a
         href={href}
         class:list={[
@@ -19,17 +19,5 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
         <slot />
       </a>
     </li>
-  ) : (
-    <a
-      href={href}
-      class:list={[
-        className,
-        { active: isActive },
-        "no-underline black hover:font-bold active:font-bold",
-      ]}
-      {...props}
-    >
-      <slot />
-    </a>
   )
 }

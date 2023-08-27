@@ -11,15 +11,11 @@ import Hamburger from "../nav/Hamburger";
   <ul class="flex flex-row flex-grow mr-5 gap-x-5 max-lg:hidden">
     <HeaderLink href="/about">어바웃</HeaderLink>
     <HeaderLink href="/category">카테고리</HeaderLink>
-  </ul>
 
-  <HeaderLink href="https://github.com/olcw78" target="_blank" isNotFlex>
-    <img
-      src="/svg/github-mark.svg"
-      alt="github logo"
-      class="mr-3 max-sm:mr-0"
-    />
-  </HeaderLink>
+    <HeaderLink href="https://github.com/olcw78" target="_blank">
+      <img src="/svg/github-mark.svg" alt="github logo" />
+    </HeaderLink>
+  </ul>
 
   <Hamburger client:idle />
   <ThemeIcon client:idle />
