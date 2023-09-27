@@ -1,4 +1,4 @@
-import SidePanel from "@/components/SidePanel.astro";
+// import SidePanel from "@/pages/SidePanel.astro";
 import { useState } from "preact/compat";
 
 const Hamburger = () => {
@@ -11,7 +11,7 @@ const Hamburger = () => {
         <img src="/svg/hamburger-menu.svg" alt="hamburger menu icon" />
       </button>
 
-      {isSidePanelOpen && <SidePanel />}
+      {/*{isSidePanelOpen && <SidePanel />}*/}
     </>
   );
 };

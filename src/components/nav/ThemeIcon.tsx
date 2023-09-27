@@ -1,30 +1,31 @@
-import type { FC } from "preact/compat";
-// import { useStore } from "@nanostores/preact";
-// import {
-//   preferences,
-//   toggleTheme,
-//   loadInitialThemePreferences,
-// } from "../states/Theme.state";
-// import { useEffect } from "preact/hooks";
+import { useStore } from "@nanostores/preact";
+import { useEffect } from "preact/hooks";
+import {
+  isLightTheme$,
+  loadInitialThemePreferences,
+  preferences$,
+  toggleTheme,
+} from "@/states/Theme.state";
 
-const ThemeIcon: FC = () => {
-  // const { theme } = useStore(preferences);
+const ThemeIcon = () => {
+  const isLightTheme = useStore(isLightTheme$);
 
-  // useEffect(() => {
-  //   loadInitialThemePreferences();
-  // }, []);
+  useEffect(() => {
+    loadInitialThemePreferences();
+  }, []);
+
+  const onClick_ThemeIcon = () => {
+    toggleTheme();
+  };
 
   return (
     <label class="swap">
-      <input type="checkbox" />
-      <img src="/svg/moon.svg" alt="moon icon" class="swap-on" />
-      <img src="/svg/sun.svg" alt="sun icon" class="swap-off" />
-
-      {/* {theme === "light" ? (
-          <img src="/svg/sun.svg" alt="sun icon" />
-        ) : (
-          <img src="/svg/moon.svg" alt="moon icon" />
-        )} */}
+      <input type="checkbox" onChange={onClick_ThemeIcon} />
+      {isLightTheme ? (
+        <img src="/svg/sun.svg" alt="sun icon alt" />
+      ) : (
+        <img src="/svg/moon.svg" alt="moon icon alt" />
+      )}
     </label>
   );
 };

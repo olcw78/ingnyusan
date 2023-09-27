@@ -1,4 +1,5 @@
 import { persistentMap } from "@nanostores/persistent";
+import { computed } from "nanostores";
 
 export type PreferencesState = {
   theme: "dark" | "light";
@@ -15,55 +16,29 @@ const localStorageKey = {
   },
 };
 
-export const preferences = persistentMap<PreferencesState>(
+export const preferences$ = persistentMap<PreferencesState>(
   localStorageKey.root,
   {
     theme: "light",
     language: "ko",
   }
 );
+export const isLightTheme$ = computed(
+  preferences$,
+  (state) => state.theme === "light"
+);
 
 export const loadInitialThemePreferences = () => {
-  const theme = <PreferencesState["theme"]>(
-    localStorage.getItem(localStorageKey.theme())
-  );
+  const theme = localStorage.getItem(
+    localStorageKey.theme()
+  ) as PreferencesState["theme"];
 
-  // device-wise light mode settings.
-  // if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  //   theme = "dark";
-  //   setDarkTheme();
-  // } else {
-  //   theme = "light";
-  //   setLightTheme();
-  // }
-
-  preferences.setKey("theme", theme);
-  if (theme === "light") {
-    setLightTheme();
-    return;
-  }
-
-  setDarkTheme();
-};
-
-export const setDarkTheme = () => {
-  preferences.setKey("theme", "dark");
-  // document.documentElement.setAttributeNS()
-};
-
-export const setLightTheme = () => {
-  preferences.setKey("theme", "light");
-  // document.documentElement['theme']! = 'light';
+  preferences$.setKey("theme", theme);
 };
 
 export const toggleTheme = () => {
-  console.log("togle theme!");
-  const { theme } = preferences.get();
+  const { theme } = preferences$.get();
+  const nextTheme = theme === "light" ? "dark" : "light";
 
-  if (theme === "dark") {
-    setLightTheme();
-    return;
-  }
-
-  setDarkTheme();
+  preferences$.setKey("theme", nextTheme);
 };
