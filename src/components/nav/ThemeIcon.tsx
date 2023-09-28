@@ -1,21 +1,12 @@
 import { useStore } from "@nanostores/preact";
 import { useEffect } from "preact/hooks";
-import {
-  isLightTheme$,
-  loadInitialThemePreferences,
-  preferences$,
-  toggleTheme,
-} from "@/states/Theme.state";
+import Preferences from "@/states/Preferences";
 
 const ThemeIcon = () => {
-  const isLightTheme = useStore(isLightTheme$);
-
-  useEffect(() => {
-    loadInitialThemePreferences();
-  }, []);
+  const isLightTheme = useStore(Preferences.isLightTheme$);
 
   const onClick_ThemeIcon = () => {
-    toggleTheme();
+    Preferences.toggleTheme();
   };
 
   return (

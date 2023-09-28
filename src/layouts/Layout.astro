@@ -8,15 +8,15 @@ import Footer from "../components/core/Footer.astro";
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <title>{SITE_TITLE}</title>
-  </head>
-  <body>
-    <Header title={SITE_TITLE} />
-    <main class="container px-6 mx-auto">
-      <slot />
-    </main>
-    <Footer />
-  </body>
+<head>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <title>{SITE_TITLE}</title>
+</head>
+<body>
+<Header title={SITE_TITLE} />
+<main class="container px-6 mx-auto">
+  <slot />
+</main>
+<Footer />
+</body>
 </html>

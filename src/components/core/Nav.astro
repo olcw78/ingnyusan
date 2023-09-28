@@ -6,16 +6,16 @@ import Hamburger from "../nav/Hamburger";
 ---
 
 <nav class="flex items-center">
-    <Searchbar client:load/>
+  <Searchbar client:load />
 
-    <ul class="flex flex-row flex-grow mr-5 gap-x-5 max-lg:hidden">
-        <HeaderLink href="/about">어바웃</HeaderLink>
-        <HeaderLink href="/category">카테고리</HeaderLink>
-        <HeaderLink href="https://github.com/olcw78" target="_blank">
-            <img src="/svg/github-mark.svg" alt="github logo"/>
-        </HeaderLink>
-    </ul>
+  <ul class="flex flex-row flex-grow mr-5 gap-x-5 max-lg:hidden">
+    <HeaderLink href="/about">어바웃</HeaderLink>
+    <HeaderLink href="/category">카테고리</HeaderLink>
+    <HeaderLink href="https://github.com/olcw78" target="_blank">
+      <img src="/svg/github-mark.svg" alt="github logo" />
+    </HeaderLink>
+  </ul>
 
-    <Hamburger client:idle/>
-    <ThemeIcon client:idle/>
+  <Hamburger client:idle />
+  <ThemeIcon client:only />
 </nav>
