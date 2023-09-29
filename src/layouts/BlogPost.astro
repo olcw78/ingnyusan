@@ -5,6 +5,7 @@ import CategoryItem from "@/components/category/CategoryItem.astro";
 import { markdown } from "@astropub/md";
 import CheckSecretModal from "@/components/secret/CheckSecretModal";
 import getReadingTime from "reading-time";
+import { formatDate } from "@/util/date";
 
 type Props = Blog;
 const blog = Astro.props;
@@ -18,26 +19,16 @@ const {
   password: matchingPassword,
 } = blog;
 
-const asDate = new Date(publishedAt);
-const date = `
-  ${asDate.getFullYear()}년 
-  ${asDate.getMonth() + 1}월 
-  ${asDate.getDate()}일 
-  ${asDate.getHours()}:${asDate.getMinutes()}`;
+const date = formatDate(publishedAt);
 
-const text = content?.flatMap(({ children }) =>
+const mergedContents = content?.flatMap(({ children }) =>
   children?.map(({ text }) => text)
 )!;
 
-let res = ``;
-for (let x of text) {
-  res += x;
-  res += "\n";
-}
+const markdownSrc = mergedContents.reduce((p, c) => p + c + "\n", "");
+const md = await markdown(markdownSrc, { syntaxHighlight: "shiki" });
 
-const md = await markdown(res, {});
-
-const readingTimeResult = getReadingTime(text.join(""));
+const readingTimeResult = getReadingTime(mergedContents.join(""));
 const minutes = Math.round(readingTimeResult.minutes);
 ---
 
@@ -48,7 +39,7 @@ const minutes = Math.round(readingTimeResult.minutes);
     )
   }
 
-  <article class="px-20 max-sm:px-6">
+  <article class="max-sm:px-6 px-20">
     <h1 class="mb-[50px] mt-1 text-4xl">{title}</h1>
 
     <div class="flex flex-col justify-center gap-3 mb-[20px]">
@@ -56,10 +47,10 @@ const minutes = Math.round(readingTimeResult.minutes);
         <p class="text-slate-500">출판일자&nbsp;</p>
         <time class="text-slate-700 text-lg">{date}</time>
       </div>
+
       <p class="text-slate-500">
-        읽는 데 걸리는 시간 <span class="text-slate-700 text-lg"
-          >{minutes}분</span
-        >
+        읽는 데 걸리는 시간
+        <span class="text-slate-700 text-lg">{minutes}분</span>
       </p>
     </div>
 
@@ -75,7 +66,7 @@ const minutes = Math.round(readingTimeResult.minutes);
 
     <article
       id="md-root"
-      class="min-h-[70vh] mt-10 mx-1 leading-[3rem] text-lg break-words"
+      class="min-h-[90vh] mt-20 leading-8 text-lg break-words"
       set:html={md}
     />
 
@@ -93,6 +84,7 @@ const minutes = Math.round(readingTimeResult.minutes);
   const unlockButtonElement = document.getElementById(
     "secret-unlock-button"
   ) as HTMLButtonElement;
+
   unlockButtonElement.onclick = function (event) {
     event.preventDefault();
     console.log("click unlock!");

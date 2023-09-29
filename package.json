@@ -16,6 +16,7 @@
     "@nanostores/preact": "^0.4.1",
     "@sanity/client": "^6.4.9",
     "astro-sanity": "^1.1.7",
+    "dayjs": "^1.11.10",
     "mdast-util-to-string": "^3.2.0",
     "nanostores": "^0.8.1",
     "preact": "^10.16.0",
