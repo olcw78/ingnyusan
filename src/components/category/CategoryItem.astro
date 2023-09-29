@@ -6,10 +6,8 @@ interface Props {
 const { category, isTextOnly = false } = Astro.props;
 ---
 
-<li class="rounded-md hover:bg-slate-300">
-  <button
-    class={isTextOnly ? "btn btn-xs btn-ghost p-auto" : "btn btn-xs p-auto"}
-  >
-    <span class={!isTextOnly ? "text-white" : ""}>{category}</span>
-  </button>
+<li>
+    <button class={isTextOnly ? "btn btn-xs btn-ghost p-auto" : "btn btn-xs p-auto"}>
+        <span class={!isTextOnly ? "text-white" : ""}>{category}</span>
+    </button>
 </li>

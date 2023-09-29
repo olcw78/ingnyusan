@@ -15,9 +15,11 @@ const { categories: allCategories, eachCount } =
     </div>
 
     <CategoryContainer>
-      {allCategories?.map((category, i) => (
-        <CategoryItem category={`${category} (${eachCount[i]})`} />
-      ))}
+      {
+        allCategories?.map((category, i) => (
+          <CategoryItem category={`${category} (${eachCount[i]})`} />
+        ))
+      }
     </CategoryContainer>
   </section>
 </Layout>

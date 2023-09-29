@@ -10,26 +10,28 @@ const blogOutlines = await getAllBlogOutlines();
 <Layout>
   <section class="min-h-[85vh] container">
     <ul class="list-none p-[unset]">
-      {blogOutlines.map((blog) => (
-        <li
-          data-slug={blog.slug}
-          class="flex flex-col items-start w-full px-10 py-10 mb-5 border rounded-sm ease-in max-sm:px-3 blog-item hover:bg-slate-50 hover:cursor-pointer border-1 border-slate-200"
-        >
-          <div class="flex flex-row items-center justify-between w-full max-sm:flex-col">
-            <section class="w-[80%] flex flex-col flex-nowrap">
-              <p class="text-2xl font-bold">{blog.title}</p>
-              <date class="text-xs">{blog.publishedAt}</date>
-              <p class="my-3 text-sm">{blog.brief}</p>
-            </section>
+      {
+        blogOutlines.map((blog) => (
+          <li
+            data-slug={blog.slug}
+            class="flex flex-col items-start w-full px-10 py-10 mb-5 border rounded-md ease-in max-sm:px-3 blog-item hover:bg-slate-50 hover:cursor-pointer border-1 border-slate-200"
+          >
+            <div class="flex flex-row items-center justify-between w-full max-sm:flex-col">
+              <section class="w-[80%] flex flex-col flex-nowrap">
+                <p class="text-2xl font-bold">{blog.title}</p>
+                <date class="text-xs">{blog.publishedAt}</date>
+                <p class="my-3 text-sm">{blog.brief}</p>
+              </section>
 
-           <CategoryContainer isReverse>
-              {blog.categories?.map((category) => (
-                <CategoryItem category={category} />
-              ))}
-           </CategoryContainer>
-          </div>
-        </li>)
-      )}
+              <CategoryContainer isReverse>
+                {blog.categories?.map((category) => (
+                  <CategoryItem category={category} />
+                ))}
+              </CategoryContainer>
+            </div>
+          </li>
+        ))
+      }
     </ul>
   </section>
 </Layout>
@@ -40,7 +42,7 @@ const blogOutlines = await getAllBlogOutlines();
   ) as HTMLCollectionOf<HTMLLIElement>;
 
   for (const element of blogItemElements) {
-    element.addEventListener("click", function() {
+    element.addEventListener("click", function () {
       redirectToBlogDetail(this.dataset.slug!);
     });
   }
