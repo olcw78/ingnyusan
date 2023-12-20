@@ -6,9 +6,10 @@ import { markdown } from "@astropub/md";
 import CheckSecretModal from "@/components/secret/CheckSecretModal";
 import getReadingTime from "reading-time";
 import { formatDate } from "@/util/date";
+import Divider from "@/components/Divider.astro";
 
 type Props = Blog;
-const blog = Astro.props;
+const blog: Blog = Astro.props;
 
 const {
   title,
@@ -26,7 +27,12 @@ const mergedContents = content?.flatMap(({ children }) =>
 )!;
 
 const markdownSrc = mergedContents.reduce((p, c) => p + c + "\n", "");
-const md = await markdown(markdownSrc, { syntaxHighlight: "shiki" });
+const md = await markdown(markdownSrc, {
+  syntaxHighlight: "shiki",
+  shikiConfig: {
+    theme: "dark-plus",
+  },
+});
 
 const readingTimeResult = getReadingTime(mergedContents.join(""));
 const minutes = Math.round(readingTimeResult.minutes);
@@ -64,13 +70,15 @@ const minutes = Math.round(readingTimeResult.minutes);
       }
     </ul>
 
+    <Divider />
+
     <article
       id="md-root"
-      class="min-h-[90vh] mt-20 leading-8 text-lg break-words"
+      class="min-h-[90vh] mt-20 leading-8 break-words"
       set:html={md}
     />
 
-    <hr class="border-t-[1px] border-solid border-slate-300 my-10" />
+    <Divider />
 
     <slot />
   </article>
@@ -85,12 +93,12 @@ const minutes = Math.round(readingTimeResult.minutes);
     "secret-unlock-button"
   ) as HTMLButtonElement;
 
-  unlockButtonElement.onclick = function (event) {
+  unlockButtonElement.addEventListener("click", function (event) {
     event.preventDefault();
     console.log("click unlock!");
 
     if (checkSecretModalRootElement.classList.contains("visible")) {
       checkSecretModalRootElement.classList.replace("visible", "hidden");
     }
-  };
+  });
 </script>
