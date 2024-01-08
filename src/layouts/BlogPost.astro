@@ -49,6 +49,7 @@ md = md.replaceAll(
   '<pre ',
   "<pre class='my-5 rounded-ml' style='padding: 1rem 1.2rem; border-radius: 10px; background-color: #24292e; overflow-x: auto;' "
 )
+md = md.replaceAll('<a ', '<a class="text-orange-500 underline" ')
 
 const readingTimeResult = getReadingTime(mergedContents.join(''))
 const minutes = Math.round(readingTimeResult.minutes)
