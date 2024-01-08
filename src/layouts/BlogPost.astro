@@ -1,15 +1,16 @@
 ---
-import Layout from "./Layout.astro";
-import type { Blog } from "../types";
-import CategoryItem from "@/components/category/CategoryItem.astro";
-import { markdown } from "@astropub/md";
-import CheckSecretModal from "@/components/secret/CheckSecretModal";
-import getReadingTime from "reading-time";
-import { formatDate } from "@/util/date";
-import Divider from "@/components/Divider.astro";
+import Layout from './Layout.astro'
+import type { Blog } from '@/@types'
+import CategoryItem from '@/components/category/CategoryItem.astro'
+import CheckSecretModal from '@/components/secret/CheckSecretModal'
+import getReadingTime from 'reading-time'
+import { formatDate } from '@/util/date'
+import Divider from '@/components/Divider.astro'
+import MarkdownRenderer from '@/components/MardownRenderer'
+import { markdown } from '@astropub/md'
 
-type Props = Blog;
-const blog: Blog = Astro.props;
+type Props = Blog
+const blog: Blog = Astro.props
 
 const {
   title,
@@ -18,24 +19,39 @@ const {
   categories,
   isPrivate,
   password: matchingPassword,
-} = blog;
+} = blog
 
-const date = formatDate(publishedAt);
+const date = formatDate(publishedAt)
 
 const mergedContents = content?.flatMap(({ children }) =>
   children?.map(({ text }) => text)
-)!;
+)!
 
-const markdownSrc = mergedContents.reduce((p, c) => p + c + "\n", "");
-const md = await markdown(markdownSrc, {
-  syntaxHighlight: "shiki",
+const markdownSrc = mergedContents.reduce((a, b) => a + b + '\n', '')
+
+let md = await markdown(markdownSrc, {
+  syntaxHighlight: 'shiki',
   shikiConfig: {
-    theme: "dark-plus",
+    wrap: true,
+    // theme: 'github-light',
   },
-});
+})
 
-const readingTimeResult = getReadingTime(mergedContents.join(""));
-const minutes = Math.round(readingTimeResult.minutes);
+md = md.replaceAll('<h1 ', "<h1 class='text-4xl text-bold my-14' ")
+md = md.replaceAll('<h2 ', "<h1 class='text-3xl my-12' ")
+md = md.replaceAll('<h3 ', "<h1 class='text-2xl my-10' ")
+md = md.replaceAll('<h4 ', "<h1 class='text-xl my-8' ")
+md = md.replaceAll('<hr>', "<hr class='my-10'>")
+md = md.replaceAll('<p ', "<p class='text-slate-700' ")
+md = md.replaceAll('<p>', "<p class='text-slate-500'>")
+md = md.replaceAll('<li>', "<li class='text-slate-500'>- ")
+md = md.replaceAll(
+  '<pre ',
+  "<pre class='my-5 rounded-ml' style='padding: 1rem 1.2rem; border-radius: 10px; background-color: #24292e; overflow-x: auto;' "
+)
+
+const readingTimeResult = getReadingTime(mergedContents.join(''))
+const minutes = Math.round(readingTimeResult.minutes)
 ---
 
 <Layout>
@@ -45,26 +61,26 @@ const minutes = Math.round(readingTimeResult.minutes);
     )
   }
 
-  <article class="max-sm:px-6 px-20">
-    <h1 class="mb-[50px] mt-1 text-4xl">{title}</h1>
+  <article class='max-sm:px-6 px-20'>
+    <h1 class='mb-[50px] mt-1 text-4xl'>{title}</h1>
 
-    <div class="flex flex-col justify-center gap-3 mb-[20px]">
-      <div class="flex items-center">
-        <p class="text-slate-500">출판일자&nbsp;</p>
-        <time class="text-slate-700 text-lg">{date}</time>
+    <div class='flex flex-col justify-center gap-3 mb-[20px]'>
+      <div class='flex items-center'>
+        <p class='text-slate-500'>출판일자&nbsp;</p>
+        <time class='text-slate-700 text-lg'>{date}</time>
       </div>
 
-      <p class="text-slate-500">
+      <p class='text-slate-500'>
         읽는 데 걸리는 시간
-        <span class="text-slate-700 text-lg">{minutes}분</span>
+        <span class='text-slate-700 text-lg'>{minutes}분</span>
       </p>
     </div>
 
     <ul
-      class="mb-3 flex flex-row gap-0.5 items-center max-sm:flex-col max-sm:items-baseline"
+      class='mb-3 flex flex-row gap-0.5 items-center max-sm:flex-col max-sm:items-baseline'
     >
       {
-        categories?.map((category) => (
+        categories?.map(category => (
           <CategoryItem category={category} isTextOnly />
         ))
       }
@@ -72,11 +88,7 @@ const minutes = Math.round(readingTimeResult.minutes);
 
     <Divider />
 
-    <article
-      id="md-root"
-      class="min-h-[90vh] mt-20 leading-8 break-words"
-      set:html={md}
-    />
+    <article set:html={md} class='min-h-[90vh] mt-20 leading-10 text-xl' />
 
     <Divider />
 
@@ -86,19 +98,19 @@ const minutes = Math.round(readingTimeResult.minutes);
 
 <script>
   const checkSecretModalRootElement = document.getElementById(
-    "check-secret-modal"
-  ) as HTMLDivElement;
+    'check-secret-modal'
+  ) as HTMLDivElement
 
   const unlockButtonElement = document.getElementById(
-    "secret-unlock-button"
-  ) as HTMLButtonElement;
+    'secret-unlock-button'
+  ) as HTMLButtonElement
 
-  unlockButtonElement.addEventListener("click", function (event) {
-    event.preventDefault();
-    console.log("click unlock!");
+  unlockButtonElement.addEventListener('click', function (event) {
+    event.preventDefault()
+    console.log('click unlock!')
 
-    if (checkSecretModalRootElement.classList.contains("visible")) {
-      checkSecretModalRootElement.classList.replace("visible", "hidden");
+    if (checkSecretModalRootElement.classList.contains('visible')) {
+      checkSecretModalRootElement.classList.replace('visible', 'hidden')
     }
-  });
+  })
 </script>
