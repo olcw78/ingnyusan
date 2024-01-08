@@ -1,18 +1,18 @@
 ---
-import BlogPost from "../../layouts/BlogPost.astro";
-import { getAllBlogs } from "../../cms/getAllBlogs";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import BlogPost from '../../layouts/BlogPost.astro'
+import { getAllBlogs } from '../../cms/getAllBlogs'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 
 export const getStaticPaths = (async () => {
-  const blogs = await getAllBlogs();
-  return blogs.map((blog) => ({
+  const blogs = await getAllBlogs()
+  return blogs.map(blog => ({
     params: { slug: blog.slug.current },
     props: { blog },
-  }));
-}) satisfies GetStaticPaths;
+  }))
+}) satisfies GetStaticPaths
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-const { blog } = Astro.props;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+const { blog } = Astro.props
 ---
 
 <BlogPost {...blog} />

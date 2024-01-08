@@ -1,22 +1,22 @@
 ---
-import "../styles/global.css";
-import BaseHead from "../components/core/BaseHead.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import Header from "../components/core/Header.astro";
-import Footer from "../components/core/Footer.astro";
+import BaseHead from '../components/core/BaseHead.astro'
+import k from '../const'
+import Header from '../components/core/Header.astro'
+import Footer from '../components/core/Footer.astro'
+import Preferences from '@/states/Preferences'
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  <title>{SITE_TITLE}</title>
-</head>
-<body>
-<Header title={SITE_TITLE} />
-<main class="container px-6 mx-auto">
-  <slot />
-</main>
-<Footer />
-</body>
+<html lang='en'>
+  <head>
+    <BaseHead title={k.SITE_TITLE} description={k.SITE_DESC} />
+    <title>{k.SITE_TITLE}</title>
+  </head>
+  <body>
+    <Header title={k.SITE_TITLE} />
+    <main class='container px-6 mx-auto'>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

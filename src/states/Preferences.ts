@@ -1,60 +1,57 @@
-import { persistentMap } from "@nanostores/persistent";
-import { computed, MapStore, ReadableAtom } from "nanostores";
+import { persistentMap } from '@nanostores/persistent'
+import { computed, MapStore, ReadableAtom } from 'nanostores'
 
 export type PreferencesState = {
-  theme: "dark" | "light";
-  language: "ko" | "en" | "fr" | "jp";
-};
+  theme: 'dark' | 'light'
+  language: 'ko' | 'en' | 'fr' | 'jp' | 'ne'
+}
 
 class Preference {
-  static readonly LocalStorageKeyPrefix = "theme:";
-  public static readonly Theme = "theme";
-  public static readonly Language = "language";
+  static readonly LocalStorageKeyPrefix = 'theme:'
+  static readonly Theme = 'theme'
+  static readonly Language = 'language'
 
-  private readonly _preference$: MapStore<PreferencesState>;
-  public get preference$(): MapStore<PreferencesState> {
-    return this._preference$;
-  }
-
-  public readonly isLightTheme$: ReadableAtom<boolean>;
+  readonly preference$: MapStore<PreferencesState>
+  readonly isLightTheme$: ReadableAtom<boolean>
 
   constructor(initialState: PreferencesState) {
-    this._preference$ = persistentMap<PreferencesState>(
+    this.preference$ = persistentMap<PreferencesState>(
       Preference.LocalStorageKeyPrefix,
       initialState
-    );
+    )
 
     this.isLightTheme$ = computed(
-      this._preference$,
-      (state) => state.theme === "light"
-    );
+      this.preference$,
+      state => state.theme === 'light'
+    )
 
     // load initial preference reading from localStorage.
-    const initialTheme: PreferencesState["theme"] =
+    const initialTheme: PreferencesState['theme'] =
       localStorage.getItem(Preference.Theme) ??
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    document.documentElement.setAttribute("data-theme", initialTheme);
-    this._preference$.setKey(Preference.Theme, initialTheme);
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+
+    document.documentElement.setAttribute('data-theme', initialTheme)
+    this.preference$.setKey(Preference.Theme, initialTheme)
 
     const initialLanguage = localStorage.getItem(
       Preference.Language
-    ) as PreferencesState["language"];
+    ) as PreferencesState['language']
 
-    this._preference$.setKey(Preference.Language, initialLanguage);
+    this.preference$.setKey(Preference.Language, initialLanguage)
   }
 
-  public toggleTheme(): void {
-    const { theme } = this._preference$.get();
-    const nextTheme = theme === "light" ? "dark" : "light";
+  toggleTheme(): void {
+    const { theme } = this.preference$.get()
+    const nextTheme = theme === 'light' ? 'dark' : 'light'
 
-    document.documentElement.setAttribute("data-theme", nextTheme);
-    this._preference$.setKey(Preference.Theme, nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme)
+    this.preference$.setKey(Preference.Theme, nextTheme)
   }
 }
 
 export default new Preference({
-  theme: "light",
-  language: "ko",
-});
+  theme: 'light',
+  language: 'ko',
+})

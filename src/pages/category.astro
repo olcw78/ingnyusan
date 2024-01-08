@@ -1,17 +1,17 @@
 ---
-import { getAllCategoriesAndCount } from "src/cms/getAllCategories";
-import Layout from "../layouts/Layout.astro";
-import CategoryItem from "../components/category/CategoryItem.astro";
-import CategoryContainer from "../components/category/CategoryContainer.astro";
+import { getAllCategoriesAndCount } from 'src/cms/getAllCategories'
+import Layout from '../layouts/Layout.astro'
+import CategoryItem from '../components/category/CategoryItem.astro'
+import CategoryContainer from '../components/category/CategoryContainer.astro'
 
 const { categories: allCategories, eachCount } =
-  await getAllCategoriesAndCount();
+  await getAllCategoriesAndCount()
 ---
 
 <Layout>
-  <section class="min-h-[85vh] px-[20%]">
-    <div class="w-full flex justify-center mb-[100px]">
-      <p class="text-2xl">보고 싶은 포스트의 태그를 선택해주세요.</p>
+  <section class='min-h-[85vh] px-[20%]'>
+    <div class='w-full flex justify-center mb-[100px]'>
+      <p class='text-2xl'>보고 싶은 포스트의 태그를 선택해주세요.</p>
     </div>
 
     <CategoryContainer>

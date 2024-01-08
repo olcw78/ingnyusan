@@ -1,13 +1,13 @@
 const Category = () => {
   return (
     <button
-      class="lg:hidden md:block mx-2"
+      class='lg:hidden md:block mx-2'
       onClick={() => {
-        console.log("category clicked!");
+        console.log('category clicked!')
       }}
     >
-      <img src="/svg/category.svg" alt="tag menu icon" />
+      <img src='/svg/category.svg' alt='tag menu icon' />
     </button>
-  );
-};
-export default Category;
+  )
+}
+export default Category

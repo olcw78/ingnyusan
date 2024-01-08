@@ -1,5 +1,5 @@
-import { groq, useSanityClient } from "astro-sanity";
-import type { Blog } from "../types";
+import { groq, useSanityClient } from 'astro-sanity'
+import type { Blog } from '../types'
 
 const query = groq`
   *[_type == "blog"] {
@@ -13,10 +13,9 @@ const query = groq`
     categories,
     content
   }
-`;
+`
 
 export async function getAllBlogs(): Promise<readonly Blog[]> {
-  const fetchedBlogs = await useSanityClient().fetch<readonly Blog[]>(query);
-  return fetchedBlogs;
+  const fetchedBlogs = await useSanityClient().fetch<readonly Blog[]>(query)
+  return fetchedBlogs
 }
-
