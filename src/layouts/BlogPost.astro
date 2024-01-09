@@ -6,7 +6,6 @@ import CheckSecretModal from '@/components/secret/CheckSecretModal'
 import getReadingTime from 'reading-time'
 import { formatDate } from '@/util/date'
 import Divider from '@/components/Divider.astro'
-import MarkdownRenderer from '@/components/MardownRenderer'
 import { markdown } from '@astropub/md'
 
 type Props = Blog
@@ -89,7 +88,9 @@ const minutes = Math.round(readingTimeResult.minutes)
 
     <Divider />
 
-    <article set:html={md} class='min-h-[90vh] mt-20 leading-10 text-xl' />
+    <div class='min-h-[90vh] mt-20 leading-10 text-xl'>
+      <div set:html={md} />
+    </div>
 
     <Divider />
 
