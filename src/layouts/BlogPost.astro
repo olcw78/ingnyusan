@@ -7,6 +7,7 @@ import getReadingTime from 'reading-time'
 import { formatDate } from '@/util/date'
 import Divider from '@/components/Divider.astro'
 import { markdown } from '@astropub/md'
+import { replaceStyles } from '@/util/ markdown'
 
 type Props = Blog
 const blog: Blog = Astro.props
@@ -20,36 +21,20 @@ const {
   password: matchingPassword,
 } = blog
 
+// format date
 const date = formatDate(publishedAt)
 
+// process md
 const mergedContents = content?.flatMap(({ children }) =>
   children?.map(({ text }) => text)
 )!
 
 const markdownSrc = mergedContents.reduce((a, b) => a + b + '\n', '')
 
-let md = await markdown(markdownSrc, {
-  syntaxHighlight: 'shiki',
-  shikiConfig: {
-    wrap: true,
-    // theme: 'github-light',
-  },
-})
+let md = await markdown(markdownSrc, { syntaxHighlight: 'shiki' })
+md = replaceStyles(md.toString())
 
-md = md.replaceAll('<h1 ', "<h1 class='text-4xl text-bold my-14' ")
-md = md.replaceAll('<h2 ', "<h1 class='text-3xl my-12' ")
-md = md.replaceAll('<h3 ', "<h1 class='text-2xl my-10' ")
-md = md.replaceAll('<h4 ', "<h1 class='text-xl my-8' ")
-md = md.replaceAll('<hr>', "<hr class='my-10'>")
-md = md.replaceAll('<p ', "<p class='text-slate-700' ")
-md = md.replaceAll('<p>', "<p class='text-slate-500'>")
-md = md.replaceAll('<li>', "<li class='text-slate-500'>- ")
-md = md.replaceAll(
-  '<pre ',
-  "<pre class='my-5 rounded-ml' style='padding: 1rem 1.2rem; border-radius: 10px; background-color: #24292e; overflow-x: auto;' "
-)
-md = md.replaceAll('<a ', '<a class="text-orange-500 underline" ')
-
+// create reading time
 const readingTimeResult = getReadingTime(mergedContents.join(''))
 const minutes = Math.round(readingTimeResult.minutes)
 ---
